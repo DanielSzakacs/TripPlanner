@@ -13,6 +13,11 @@ import java.util.*;
 public class JPA {
 
     public static void populateDb(EntityManager em) {
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        Date date = new Date();
+//        System.out.println(dateFormat.format(date));
+
+
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //        Date birthDate1 = Calendar.getInstance().getTime();
 //        Date birthDate2 = Calendar.getInstance().getTime();
