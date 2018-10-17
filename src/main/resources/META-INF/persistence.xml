@@ -20,8 +20,8 @@
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/tripplanner"/>
-            <property name="javax.persistence.jdbc.user" value=""/>
-            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.user" value="danielszakacs"/>
+            <property name="javax.persistence.jdbc.password" value="montana00"/>
             <!--<property name="javax.persistence.sql-load-script-source" value="insert.sql"/>-->
         </properties>
     </persistence-unit>
