@@ -15,13 +15,14 @@ import java.util.*;
 
 public class JPA {
 
-
+    private static JPA jpa = null;
     private static EntityManager entityManager;
     private static EntityManagerFactory entityManagerFactory;
 
     private JPA() {
         entityManagerFactory = Persistence.createEntityManagerFactory("jpaexamplePU");
-        entityManager =entityManagerFactory.createEntityManager();
+        entityManager = entityManagerFactory.createEntityManager();
+        buildDB();
     }
 
     public static void populateDb(EntityManager em) {
@@ -58,24 +59,25 @@ public class JPA {
         System.out.println("Commitolva lett");
     }
 
-    public static EntityManager getInstance(){
-        if (entityManager == null){
-            new JPA();
+    public static JPA getInstance(){
+        if(jpa == null){
+            jpa = new JPA();
         }
-        return entityManager;
-
+        return jpa;
     }
 
+    public static EntityManager getEntityManager(){
+        if(entityManager == null){
+            getInstance();
+        }
+        return entityManager;
+    }
 
-    public static void main(String[] args) {
-
-        EntityManager em = getInstance();
+    public static void buildDB() {
+        EntityManager em = entityManager;
         populateDb(em);
         em.clear();
-
         em.close();
         entityManagerFactory.close();
     }
-
-
 }
