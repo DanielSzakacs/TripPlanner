@@ -5,8 +5,11 @@ import com.codecool.tripplanner.enums.Genre;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @OneToMany
     private List<Actor> actors = new ArrayList<>();
@@ -19,6 +22,9 @@ public class Movie {
     public Movie(String name, Genre genre) {
         this.name = name;
         this.genre = genre;
+    }
+
+    public Movie() {
     }
 
     public void addActor(Actor actor){

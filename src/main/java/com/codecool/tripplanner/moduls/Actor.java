@@ -30,4 +30,8 @@ public class Actor {
     public void setMovieList(List<Movie> movies){
         this.movieList = movies;
     }
+
+    public void addMovieToList(Movie movie){
+        this.movieList.add(movie);
+    }
 }

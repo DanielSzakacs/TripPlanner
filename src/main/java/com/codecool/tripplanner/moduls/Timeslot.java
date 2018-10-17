@@ -1,8 +1,8 @@
 package com.codecool.tripplanner.moduls;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,11 +11,11 @@ public class Timeslot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne
-    private WalkingTour tour;
+    @OneToOne(mappedBy = "timeslot")
+    private WalkingTour walkingtour;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateTime;
+    //@Temporal(TemporalType.TIME)
+    private LocalDateTime dateTime;
 
     @Column(name = "maxPax")
     private int maxPax;
@@ -23,23 +23,23 @@ public class Timeslot {
     @OneToMany
     private List<User> visitors = new ArrayList<>();
 
-    public Timeslot() {
+    public Timeslot(LocalDateTime now) {
     }
 
-    public Timeslot(Date dateTime, int maxPax) {
+    public Timeslot(LocalDateTime dateTime, int maxPax) {
         this.dateTime = dateTime;
         this.maxPax = maxPax;
     }
 
-    public Timeslot(WalkingTour tour, Date dateTime, int maxPax) {
+    public Timeslot(WalkingTour walkingtour, LocalDateTime dateTime, int maxPax) {
 
-        this.tour = tour;
+        this.walkingtour = walkingtour;
         this.dateTime = dateTime;
         this.maxPax = maxPax;
     }
 
 
     public void addWalkingTour(WalkingTour walkingTour){
-        this.tour = walkingTour;
+        this.walkingtour = walkingTour;
     }
 }

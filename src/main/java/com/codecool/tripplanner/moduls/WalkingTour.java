@@ -3,7 +3,7 @@ package com.codecool.tripplanner.moduls;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class WalkingTour {
 
     @Id
@@ -12,10 +12,14 @@ public class WalkingTour {
 
     @OneToMany
     private List<Movie> movies = new ArrayList<>();
+
     @OneToOne
     private Timeslot timeslot;
     private int price;
     private String description;
+
+    public WalkingTour() {
+    }
 
     public WalkingTour(int price, String description) {
         this.price = price;
