@@ -1,6 +1,5 @@
 package com.codecool.tripplanner;
 
-import com.codecool.tripplanner.*;
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
 import com.codecool.tripplanner.moduls.*;
@@ -10,7 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -36,7 +34,7 @@ public class JPA {
         walkingTour.addTimeslot(timeslot);
         walkingTour.addMovie(movie);
 
-        User user = new User("Timi", "password");
+        TripUser user = new TripUser("Timi", "password");
         user.addToTimeSlot(timeslot);
 
         EntityTransaction transaction = em.getTransaction();

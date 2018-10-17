@@ -21,7 +21,7 @@ public class Timeslot {
     private int maxPax;
 
     @OneToMany
-    private List<User> visitors = new ArrayList<>();
+    private List<TripUser> visitors = new ArrayList<>();
 
     public Timeslot(LocalDateTime now) {
     }
