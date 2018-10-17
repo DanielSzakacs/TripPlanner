@@ -15,6 +15,15 @@ import java.util.*;
 
 public class JPA {
 
+
+    private static EntityManager entityManager;
+    private static EntityManagerFactory entityManagerFactory;
+
+    private JPA() {
+        entityManagerFactory = Persistence.createEntityManagerFactory("jpaexamplePU");
+        entityManager =entityManagerFactory.createEntityManager();
+    }
+
     public static void populateDb(EntityManager em) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
@@ -49,15 +58,24 @@ public class JPA {
         System.out.println("Commitolva lett");
     }
 
+    public static EntityManager getInstance(){
+        if (entityManager == null){
+            new JPA();
+        }
+        return entityManager;
+
+    }
+
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaexamplePU");
-        EntityManager em = emf.createEntityManager();
 
+        EntityManager em = getInstance();
         populateDb(em);
         em.clear();
 
         em.close();
-        emf.close();
+        entityManagerFactory.close();
     }
+
+
 }
