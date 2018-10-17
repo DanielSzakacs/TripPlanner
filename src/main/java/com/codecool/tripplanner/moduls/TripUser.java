@@ -10,7 +10,7 @@ public class TripUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
+    @ManyToMany
     private List<Timeslot> timeslotList = new ArrayList<>();
 
     @Column(name = "name")

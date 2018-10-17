@@ -20,7 +20,7 @@ public class Timeslot {
     @Column(name = "maxPax")
     private int maxPax;
 
-    @OneToMany
+    @ManyToMany(mappedBy = "timeslotList")
     private List<TripUser> visitors = new ArrayList<>();
 
     public Timeslot(LocalDateTime now) {

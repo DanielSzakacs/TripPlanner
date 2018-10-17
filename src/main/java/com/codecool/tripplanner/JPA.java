@@ -40,6 +40,8 @@ public class JPA {
         Timeslot timeslot = new Timeslot(LocalDateTime.now(), 5);
         WalkingTour walkingTour = new WalkingTour(300, "Itt most van valami a vizben");
         timeslot.addWalkingTour(walkingTour);
+        walkingTour.addLocation(location);
+        location.addWalkingtour(walkingTour);
         walkingTour.addTimeslot(timeslot);
         walkingTour.addMovie(movie);
 
@@ -72,6 +74,7 @@ public class JPA {
         EntityManager em = getInstance();
         populateDb(em);
         em.clear();
+
 
         em.close();
         entityManagerFactory.close();
