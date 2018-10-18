@@ -15,6 +15,27 @@ public class Movie {
 
     @ManyToMany
     private List<Actor> actors = new ArrayList<>();
+
+    public long getId() {
+        return id;
+    }
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
     @ManyToMany
     private List<Location> locations = new ArrayList<>();
     private String name;
