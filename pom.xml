@@ -7,7 +7,7 @@
     <groupId>com.codecool.tripplanner</groupId>
     <artifactId>TripPlanner</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>JPA Example Project</name>
 
     <properties>
@@ -143,7 +143,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.5.v20170502</version>
+                <version>9.4.12.v20180830</version>
                 <configuration>
                     <reload>automatic</reload>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
