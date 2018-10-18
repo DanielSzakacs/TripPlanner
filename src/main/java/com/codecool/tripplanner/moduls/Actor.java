@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@NamedQuery(name = "getallactors",query = "select a from Actor a")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@NamedQuery(name = "getalllocations", query = "select l from Location l")
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

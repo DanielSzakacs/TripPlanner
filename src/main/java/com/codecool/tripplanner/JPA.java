@@ -74,7 +74,8 @@ public class JPA {
         List<WalkingTour> result = em.createNamedQuery("displayalltour").getResultList();
         List<Timeslot> timeslots = em.createNamedQuery("getalltimeslot").getResultList();
         List<Movie> movies = em.createNamedQuery("getallmovies").getResultList();
-        
+        List<Location> locations = em.createNamedQuery("getalllocations").getResultList();
+        List<Actor> actors = em.createNamedQuery("getallactors").getResultList();
 
 
 
