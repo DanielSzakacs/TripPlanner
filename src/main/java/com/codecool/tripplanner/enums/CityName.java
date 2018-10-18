@@ -1,5 +1,8 @@
 package com.codecool.tripplanner.enums;
 
 public enum CityName {
-    BUDAPEST
+    BUDAPEST,
+    ETYEK,
+    TINNYE,
+    KESZTHELY
 }
