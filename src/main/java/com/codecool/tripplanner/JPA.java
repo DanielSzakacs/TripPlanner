@@ -8,10 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.*;
 
 public class JPA {
 
@@ -33,7 +29,7 @@ public class JPA {
         Location location = new Location(CityName.BUDAPEST);
         Timeslot timeslot = new Timeslot("2018/10/19 13:00", 15);
         WalkingTour walkingTour = new WalkingTour("Die Hard 5 Tour",100, "Tour starts from Nyugati Pályaudvar.\n" +
-                "We are going through the famous Die Hard sequel 5th part shooting locations.",Genre.ACTION);
+                "We are going through the famous Die Hard sequel 5th part shooting locations.",movie.getGenre());
         movie.addActor(actor3);
         location.addMovie(movie);
         movie.addActor(actor1);
@@ -72,7 +68,7 @@ public class JPA {
         Location location2 = new Location(CityName.ETYEK);
         Timeslot timeslot2 = new Timeslot("2018.10.20 16:00",15);
         WalkingTour walkingTour2 = new WalkingTour("Hellboy Tour",120,"Tour starts from Nyugati pályaudvar\n" +
-                "Do you like superheroes? Hellboy summoned from Hell to help the third Reich to win WWII.This tour you can meet with Ron Perlman",movie1.getGenre());
+                "Do you like superheroes? Hellboy summoned from Hell to help the third Reich to win WWII.This tour you can meet with Ron Perlman",movie2.getGenre());
         location.addMovie(movie2);
         movie2.addActor(actor5);
         movie2.addActor(actor6);
@@ -135,9 +131,8 @@ public class JPA {
     public static void buildDB() {
         EntityManager em = entityManager;
         populateDb(em);
-        em.clear();
-        em.close();
-        entityManagerFactory.close();
+
+
 
     }
 

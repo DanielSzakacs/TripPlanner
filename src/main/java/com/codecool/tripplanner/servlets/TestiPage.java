@@ -22,16 +22,16 @@ public class TestiPage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        JPA.getEntityManager();
+
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
-        EntityManager em = JPA.getEntityManager();
-        List<WalkingTour> tours = em.createNamedQuery("displayalltour").getResultList();
-        List<Timeslot> timeslots = em.createNamedQuery("getalltimeslot").getResultList();
-        List<Movie> movies = em.createNamedQuery("getallmovies").getResultList();
-        List<Location> locations = em.createNamedQuery("getalllocations").getResultList();
-        List<Actor> actors = em.createNamedQuery("getallactors").getResultList();
+
+        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
+        List<Timeslot> timeslots = JPA.getEntityManager().createNamedQuery("getalltimeslot").getResultList();
+        List<Movie> movies = JPA.getEntityManager().createNamedQuery("getallmovies").getResultList();
+        List<Location> locations = JPA.getEntityManager().createNamedQuery("getalllocations").getResultList();
+        List<Actor> actors = JPA.getEntityManager().createNamedQuery("getallactors").getResultList();
 
         context.setVariable("tours",tours);
         context.setVariable("locations",locations);
@@ -39,8 +39,6 @@ public class TestiPage extends HttpServlet {
 
        engine.process("agency/index.html", context, response.getWriter());
 
-        em.clear();
-        em.close();
     }
 
     @Override

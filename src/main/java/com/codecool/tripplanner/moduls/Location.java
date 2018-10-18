@@ -18,10 +18,26 @@ public class Location {
     @ManyToMany(mappedBy = "locations")
     private List<Movie> movies = new ArrayList<>();
 
+    public long getId() {
+        return id;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public CityName getCityName() {
+        return cityName;
+    }
+
+    public List<WalkingTour> getWalkingTour() {
+        return walkingTour;
+    }
+
     @Enumerated(value = EnumType.STRING)
     private CityName cityName;
 
-    @ManyToMany(mappedBy = "location")
+    @ManyToMany(mappedBy = "locations")
     private List<WalkingTour> walkingTour = new ArrayList<>();
 
     public Location(CityName cityName) {

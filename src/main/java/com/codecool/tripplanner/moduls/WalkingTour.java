@@ -1,5 +1,6 @@
 package com.codecool.tripplanner.moduls;
 
+import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
 
 import javax.persistence.*;
@@ -38,7 +39,7 @@ public class WalkingTour {
     private Genre moviegenre;
 
     @ManyToMany
-    private List<Location> location = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
 
     public WalkingTour() {
     }
@@ -51,7 +52,7 @@ public class WalkingTour {
     }
 
     public void addLocation(Location location){
-        this.location.add(location);
+        this.locations.add(location);
     }
 
     public void addTimeslot(Timeslot timeslot){
@@ -82,8 +83,8 @@ public class WalkingTour {
         return description;
     }
 
-    public List<Location> getLocation() {
-        return location;
+    public List<Location> getLocations() {
+        return locations;
     }
 
     @Override
@@ -94,7 +95,7 @@ public class WalkingTour {
                 ", timeslot=" + timeslot +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", location=" + location +
+                ", location=" + locations +
                 '}';
     }
 }
