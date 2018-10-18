@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@NamedQuery(name = "getallactors",query = "select a from Actor a")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,7 +13,7 @@ public class Actor {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "actors")
+    @ManyToMany(mappedBy = "actors")
     private List<Movie> movieList = new ArrayList<>();
 
     public Actor(){

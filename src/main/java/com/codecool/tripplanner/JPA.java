@@ -4,7 +4,10 @@ import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
 import com.codecool.tripplanner.moduls.*;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -23,20 +26,18 @@ public class JPA {
     }
 
     public static void populateDb(EntityManager em) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        System.out.println(dateFormat.format(date));
 
-        Actor actor1 = new Actor("Miki");
-        Movie movie = new Movie("Code is life", Genre.ACTION);
+        Actor actor1 = new Actor("Bruce Willis");
+        Movie movie = new Movie("A Good Day to Die Hard", Genre.ACTION);
         movie.addActor(actor1);
         actor1.addMovieToList(movie);
 
         Location location = new Location(CityName.BUDAPEST);
         location.addMovie(movie);
 
-        Timeslot timeslot = new Timeslot(LocalDateTime.now(), 5);
-        WalkingTour walkingTour = new WalkingTour(300, "Itt most van valami a vizben");
+        Timeslot timeslot = new Timeslot("2018/10/19 13:00", 15);
+        WalkingTour walkingTour = new WalkingTour("Die Hard 5 Tour",100, "Tour starts from Nyugati Pályaudvar.\n" +
+                "We are going through the famous Die Hard sequel 5th part shooting locations.",Genre.ACTION);
         timeslot.addWalkingTour(walkingTour);
         walkingTour.addLocation(location);
         location.addWalkingtour(walkingTour);
@@ -70,6 +71,7 @@ public class JPA {
             getInstance();
         }
         return entityManager;
+
     }
 
 //    public static void buildDB() {

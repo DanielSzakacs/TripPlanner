@@ -6,8 +6,10 @@ import javax.persistence.*;
 import javax.persistence.EnumType;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
-@NamedQuery(name = "Location.getAllWalkingtour", query = "SELECT s.walkingTour FROM Location s WHERE s.cityName = :cityname")
+@NamedQueries({@NamedQuery(name = "getalllocations", query = "select l from Location l"),
+        @NamedQuery(name = "Location.getAllWalkingtour", query = "SELECT s.walkingTour FROM Location s WHERE s.cityName = :cityname")})
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +21,7 @@ public class Location {
     @Enumerated(value = EnumType.STRING)
     private CityName cityName;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "location")
     private List<WalkingTour> walkingTour = new ArrayList<>();
 
     public Location(CityName cityName) {
