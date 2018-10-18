@@ -25,4 +25,15 @@ public class TestiPage extends HttpServlet {
 
        engine.process("agency/index.html", context, response.getWriter());
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+
+        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
+        WebContext context = new WebContext(request, response, request.getServletContext());
+
+
+
+        engine.process("agency/index.html", context, response.getWriter());
+    }
 }
