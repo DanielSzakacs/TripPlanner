@@ -4,10 +4,7 @@ import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
 import com.codecool.tripplanner.moduls.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -73,6 +70,20 @@ public class JPA {
 
         EntityManager em = getInstance();
         populateDb(em);
+        /*TypedQuery<WalkingTour> query =
+                em.createQuery("SELECT w from WalkingTour w", WalkingTour.class);
+        List<WalkingTour> results = query.getResultList();
+        for (WalkingTour c : results) {
+            System.out.println(c.getDescription());
+        }*/
+
+        List<WalkingTour> result = em.createNamedQuery("displayalltour").getResultList();
+        for (WalkingTour name: result) {
+            System.out.println(name.getDescription());
+        }
+
+
+
         em.clear();
 
 

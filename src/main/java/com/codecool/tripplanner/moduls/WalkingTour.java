@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@NamedQuery(name = "displayalltour",query = "SELECT w.location,w.description,w.movies,w.price,w.timeslot from WalkingTour w")
+@NamedQuery(name = "displayalltour",query = "SELECT w from WalkingTour w")
 public class WalkingTour {
 
     @Id
@@ -41,5 +41,41 @@ public class WalkingTour {
 
     public void addMovie(Movie movie){
         this.movies.add(movie);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public Timeslot getTimeslot() {
+        return timeslot;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Location> getLocation() {
+        return location;
+    }
+
+    @Override
+    public String toString() {
+        return "WalkingTour{" +
+                "id=" + id +
+                ", movies=" + movies +
+                ", timeslot=" + timeslot +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", location=" + location +
+                '}';
     }
 }
