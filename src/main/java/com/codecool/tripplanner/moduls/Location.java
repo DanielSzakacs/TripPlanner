@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @NamedQuery(name = "getalllocations", query = "select l from Location l")
+@NamedQuery(name = "Location.getAllWalkingtour", query = "SELECT s.walkingTour FROM Location s WHERE s.cityName = :cityname")
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
