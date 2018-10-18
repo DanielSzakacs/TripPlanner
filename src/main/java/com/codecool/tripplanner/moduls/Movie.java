@@ -28,23 +28,21 @@ public class Movie {
         return locations;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
 
     @ManyToMany
     private List<Location> locations = new ArrayList<>();
     private String name;
+
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
     public Movie(String name, Genre genre) {
         this.name = name;
         this.genre = genre;
+    }
+
+    public Genre getGenre() {
+        return genre;
     }
 
     public Movie() {

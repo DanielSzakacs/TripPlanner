@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "displayalltour",query = "SELECT w from WalkingTour w"),
-    @NamedQuery(name = "Walkingtour.getAllWalkingtourByGenre", query = "SELECT s FROM WalkingTour s WHERE s.genre = :walkingtourgenre")
+    @NamedQuery(name = "Walkingtour.getAllWalkingtourByGenre", query = "SELECT s FROM WalkingTour s WHERE s.moviegenre = :walkingtourgenre")
 })
 public class WalkingTour {
 

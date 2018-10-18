@@ -18,7 +18,7 @@ public class namedQueryHandler {
 
     public List<WalkingTour> getAllWalkingTourByGenre(String genre){
         Genre movieGenre = Genre.valueOf(genre);
-        List<WalkingTour> result = JPA.getEntityManager().createNamedQuery("Walkingtour.getAllWalkingtourByGenre").setParameter("genre", movieGenre).getResultList();
+        List<WalkingTour> result = JPA.getEntityManager().createNamedQuery("Walkingtour.getAllWalkingtourByGenre").setParameter("walkingtourgenre", movieGenre).getResultList();
         return result;
     }
 }
