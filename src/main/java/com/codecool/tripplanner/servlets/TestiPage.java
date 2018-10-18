@@ -53,8 +53,7 @@ public class TestiPage extends HttpServlet {
         String genre = request.getParameter("genre");
         if(!city.equals("nothing")){
             context.setVariable("tours", nqh.getAllWalkingTourByCityName(city));
-        }
-        if(!genre.equals("nothing")){
+        }else if(!genre.equals("nothing")){
             context.setVariable("tours", nqh.getAllWalkingTourByGenre(genre));
         }else{
             response.sendRedirect("/");
