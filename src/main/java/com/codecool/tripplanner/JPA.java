@@ -4,10 +4,7 @@ import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
 import com.codecool.tripplanner.moduls.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -41,6 +38,8 @@ public class JPA {
         Timeslot timeslot = new Timeslot(LocalDateTime.now(), 5);
         WalkingTour walkingTour = new WalkingTour(300, "Itt most van valami a vizben");
         timeslot.addWalkingTour(walkingTour);
+        walkingTour.addLocation(location);
+        location.addWalkingtour(walkingTour);
         walkingTour.addTimeslot(timeslot);
         walkingTour.addMovie(movie);
 

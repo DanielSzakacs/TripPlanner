@@ -12,7 +12,7 @@ public class Actor {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "actors")
     private List<Movie> movieList = new ArrayList<>();
 
     public Actor(){
