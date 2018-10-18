@@ -7,7 +7,6 @@ import org.thymeleaf.context.WebContext;
 
 import javax.json.Json;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,14 +30,25 @@ public class TestiPage extends HttpServlet {
                 .build()
                 .toString();
 
-//        System.out.println(json);
+
+
+//        JSONObject item = new JSONObject();
+//        JSONArray jsonArray = new JSONArray();
+//        try {
+//            item.put("name", "filename.java");
+//            item.put("filepath","aimaginarypath");
+//            jsonArray.put(item);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
 //        OutputStream os = response.getOutputStream();
 //        os.write(json.getBytes());
 //        os.close();
 
-//        engine.process("agency/index.html", context, response.getWriter());
+       engine.process("index.html", context, response.getWriter());
 
-        engine.process("agency/index.html", context, response.getWriter());
+        //engine.process("agency/index.html", context, response.getWriter());
 
 //        context.setVariable("user", json);
 //        engine.process("myaccount.html", context, response.getWriter());
