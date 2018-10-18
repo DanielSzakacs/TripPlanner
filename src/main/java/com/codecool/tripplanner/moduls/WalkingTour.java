@@ -1,5 +1,7 @@
 package com.codecool.tripplanner.moduls;
 
+import com.codecool.tripplanner.enums.Genre;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,18 @@ public class WalkingTour {
 
     private int price;
     private String description;
+    private String tourname;
+
+    public String getTourname() {
+        return tourname;
+    }
+
+    public Genre getMoviegenre() {
+        return moviegenre;
+    }
+
+    @Enumerated(value = EnumType.STRING)
+    private Genre moviegenre;
 
     @ManyToMany
     private List<Location> location = new ArrayList<>();
@@ -26,9 +40,11 @@ public class WalkingTour {
     public WalkingTour() {
     }
 
-    public WalkingTour(int price, String description) {
+    public WalkingTour(String name,int price, String description,Genre genre) {
         this.price = price;
         this.description = description;
+        this.moviegenre = genre;
+        this.tourname = name;
     }
 
     public void addLocation(Location location){

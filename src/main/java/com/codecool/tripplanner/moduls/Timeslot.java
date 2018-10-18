@@ -23,7 +23,7 @@ public class Timeslot {
         return walkingtour;
     }
 
-    public LocalDateTime getDateTime() {
+    public String  getDateTime() {
         return dateTime;
     }
 
@@ -36,7 +36,7 @@ public class Timeslot {
     }
 
     //@Temporal(TemporalType.TIME)
-    private LocalDateTime dateTime;
+    private String dateTime;
 
     @Column(name = "maxPax")
     private int maxPax;
@@ -47,12 +47,12 @@ public class Timeslot {
     public Timeslot(LocalDateTime now) {
     }
 
-    public Timeslot(LocalDateTime dateTime, int maxPax) {
+    public Timeslot(String dateTime, int maxPax) {
         this.dateTime = dateTime;
         this.maxPax = maxPax;
     }
 
-    public Timeslot(WalkingTour walkingtour, LocalDateTime dateTime, int maxPax) {
+    public Timeslot(WalkingTour walkingtour, String dateTime, int maxPax) {
 
         this.walkingtour = walkingtour;
         this.dateTime = dateTime;
