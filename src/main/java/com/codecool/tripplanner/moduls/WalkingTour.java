@@ -38,17 +38,23 @@ public class WalkingTour {
     @Enumerated(value = EnumType.STRING)
     private Genre moviegenre;
 
+    @Enumerated(value = EnumType.STRING)
+    private CityName cityName;
+
     @ManyToMany
     private List<Location> locations = new ArrayList<>();
+
+
 
     public WalkingTour() {
     }
 
-    public WalkingTour(String name,int price, String description,Genre genre) {
+    public WalkingTour(String name,int price, String description,Genre genre,CityName cityName) {
         this.price = price;
         this.description = description;
         this.moviegenre = genre;
         this.tourname = name;
+        this.cityName = cityName;
     }
 
     public void addLocation(Location location){
