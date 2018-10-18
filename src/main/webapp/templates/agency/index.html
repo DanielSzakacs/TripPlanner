@@ -157,6 +157,7 @@
                                 <select class="custom-select" name="genre">
                                     <option selected value="nothing">Genres</option>
                                     <option value="ACTION">Action</option>
+                                    <option value="COMEDY">COMEDY</option>
                                     <!--<option value="2">Catagories 2</option>-->
                                     <!--<option value="3">Catagories 3</option>-->
                                 </select>
@@ -384,12 +385,12 @@
                     <img src="static/img/bg-img/feature-filmreel.jpg" class="img-fluid" alt="Responsive image">
                     <!-- Price -->
                     <div class="price-start">
-                        <p th:text="${data.getPrice()}">Price</p>
+                        <p th:utext="${data.getPrice()}">Price</p>
                     </div>
                     <div class="feature-content d-flex align-items-center justify-content-between">
                         <div class="feature-title">
-                            <h5 th:text="${data.getTourname()}"> Tour name</h5>
-                            <p th:text="${data.getDescription()}">Description</p>
+                            <h5 th:utext="${data.getTourname()}"> Tour name</h5>
+                            <p th:utext="${data.getDescription()}">Description</p>
                             <p>Description</p>
                         </div>
                         <!--<div class="feature-favourite">-->

@@ -11,7 +11,8 @@ public class NamedQueryHandler {
 
     public List<WalkingTour> getAllWalkingTourByCityName(String city){
         CityName enumCityName = CityName.valueOf(city);
-        List<WalkingTour> result = JPA.getEntityManager().createNamedQuery("Location.getAllWalkingtour").setParameter("cityname", enumCityName).getResultList();
+        //List<WalkingTour> result = JPA.getEntityManager().createNamedQuery("Location.getAllWalkingtour").setParameter("cityname", enumCityName).getResultList();
+        List<WalkingTour> result = JPA.getEntityManager().createNamedQuery("Walkingtour.getAllWalkingtourByLocation").setParameter("cityName", enumCityName).getResultList();
         return result;
     }
 

@@ -2,6 +2,7 @@ package com.codecool.tripplanner.servlets;
 
 import com.codecool.tripplanner.JPA;
 import com.codecool.tripplanner.config.TemplateEngineUtil;
+import com.codecool.tripplanner.moduls.*;
 import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -51,12 +52,10 @@ public class TestiPage extends HttpServlet {
         String city = request.getParameter("city");
         String genre = request.getParameter("genre");
         if(!city.equals("nothing")){
-            System.out.println("CITY ======");
-            context.setVariable("result", nqh.getAllWalkingTourByCityName(city));
+            context.setVariable("tours", nqh.getAllWalkingTourByCityName(city));
         }
         if(!genre.equals("nothing")){
-            System.out.println("======= genre");
-            context.setVariable("result", nqh.getAllWalkingTourByGenre(genre));
+            context.setVariable("tours", nqh.getAllWalkingTourByGenre(genre));
         }else{
             response.sendRedirect("/");
         }
