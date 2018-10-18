@@ -1,5 +1,6 @@
 package com.codecool.tripplanner.moduls;
 
+import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
 import org.hibernate.annotations.ManyToAny;
 
@@ -12,6 +13,13 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Enumerated(value = EnumType.STRING)
+    private CityName cityName;
+
+    public CityName getCityName() {
+        return cityName;
+    }
 
     @ManyToMany
     private List<Actor> actors = new ArrayList<>();
@@ -36,9 +44,10 @@ public class Movie {
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
-    public Movie(String name, Genre genre) {
+    public Movie(String name, Genre genre,CityName cityName) {
         this.name = name;
         this.genre = genre;
+        this.cityName = cityName;
     }
 
     public Genre getGenre() {

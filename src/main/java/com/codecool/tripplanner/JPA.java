@@ -29,11 +29,11 @@ public class JPA {
 
         Actor actor1 = new Actor("Bruce Willis");
         Actor actor3 = new Actor("Gangsta Zolee");
-        Movie movie = new Movie("A Good Day to Die Hard", Genre.ACTION);
+        Movie movie = new Movie("A Good Day to Die Hard", Genre.ACTION,CityName.BUDAPEST);
         Location location = new Location(CityName.BUDAPEST);
         Timeslot timeslot = new Timeslot("2018/10/19 13:00", 15);
         WalkingTour walkingTour = new WalkingTour("Die Hard 5 Tour",100, "Tour starts from Nyugati Pályaudvar.\n" +
-                "We are going through the famous Die Hard sequel 5th part shooting locations.",movie.getGenre());
+                "We are going through the famous Die Hard sequel 5th part shooting locations.",movie.getGenre(),movie.getCityName());
         movie.addActor(actor3);
         location.addMovie(movie);
         movie.addActor(actor1);
@@ -49,11 +49,11 @@ public class JPA {
 
         Actor actor2 = new Actor("Eddie Murphy");
         Actor actor4 = new Actor("Owen Wilson");
-        Movie movie1 = new Movie("I Spy", Genre.COMEDY);
+        Movie movie1 = new Movie("I Spy", Genre.COMEDY,CityName.BUDAPEST);
         Location location1 = new Location(CityName.BUDAPEST);
         Timeslot timeslot1 = new Timeslot("2018.10.19 15:00",15);
         WalkingTour walkingTour1 = new WalkingTour("I Spy Tour",80,"Tour starts from Nyugati pályaudvar\n" +
-                "Do you remmeber when Eddiy Murphy and Owen Wilson was hanging above the tunnel?Now you vna try out!",movie1.getGenre());
+                "Do you remmeber when Eddiy Murphy and Owen Wilson was hanging above the tunnel?Now you vna try out!",movie1.getGenre(),movie1.getCityName());
         location.addMovie(movie1);
         movie1.addActor(actor2);
         movie1.addActor(actor4);
@@ -68,11 +68,11 @@ public class JPA {
 
         Actor actor6 = new Actor("Ron Perlman");
         Actor actor5 = new Actor("Selma Blair");
-        Movie movie2 = new Movie("I Spy", Genre.ACTION);
+        Movie movie2 = new Movie("I Spy", Genre.ACTION,CityName.ETYEK);
         Location location2 = new Location(CityName.ETYEK);
         Timeslot timeslot2 = new Timeslot("2018.10.20 16:00",15);
         WalkingTour walkingTour2 = new WalkingTour("Hellboy Tour",120,"Tour starts from Nyugati pályaudvar\n" +
-                "Do you like superheroes? Hellboy summoned from Hell to help the third Reich to win WWII.This tour you can meet with Ron Perlman",movie2.getGenre());
+                "Do you like superheroes? Hellboy summoned from Hell to help the third Reich to win WWII.This tour you can meet with Ron Perlman",movie2.getGenre(),movie2.getCityName());
         location.addMovie(movie2);
         movie2.addActor(actor5);
         movie2.addActor(actor6);

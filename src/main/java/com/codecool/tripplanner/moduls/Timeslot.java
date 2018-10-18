@@ -44,7 +44,7 @@ public class Timeslot {
     @ManyToMany(mappedBy = "timeslotList")
     private List<TripUser> visitors = new ArrayList<>();
 
-    public Timeslot(LocalDateTime now) {
+    public Timeslot() {
     }
 
     public Timeslot(String dateTime, int maxPax) {
