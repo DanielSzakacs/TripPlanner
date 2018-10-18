@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "getalltimeslot",query = "select t from Timeslot t")
 public class Timeslot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +14,26 @@ public class Timeslot {
 
     @OneToOne(mappedBy = "timeslot")
     private WalkingTour walkingtour;
+
+    public long getId() {
+        return id;
+    }
+
+    public WalkingTour getWalkingtour() {
+        return walkingtour;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public int getMaxPax() {
+        return maxPax;
+    }
+
+    public List<TripUser> getVisitors() {
+        return visitors;
+    }
 
     //@Temporal(TemporalType.TIME)
     private LocalDateTime dateTime;

@@ -1,17 +1,19 @@
 package com.codecool.tripplanner.moduls;
 
 import com.codecool.tripplanner.enums.Genre;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@NamedQuery(name = "getallmovies",query = "SELECT m from Movie m")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
+    @ManyToMany
     private List<Actor> actors = new ArrayList<>();
     @ManyToMany
     private List<Location> locations = new ArrayList<>();

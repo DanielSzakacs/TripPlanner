@@ -70,17 +70,12 @@ public class JPA {
 
         EntityManager em = getInstance();
         populateDb(em);
-        /*TypedQuery<WalkingTour> query =
-                em.createQuery("SELECT w from WalkingTour w", WalkingTour.class);
-        List<WalkingTour> results = query.getResultList();
-        for (WalkingTour c : results) {
-            System.out.println(c.getDescription());
-        }*/
 
         List<WalkingTour> result = em.createNamedQuery("displayalltour").getResultList();
-        for (WalkingTour name: result) {
-            System.out.println(name.getDescription());
-        }
+        List<Timeslot> timeslots = em.createNamedQuery("getalltimeslot").getResultList();
+        List<Movie> movies = em.createNamedQuery("getallmovies").getResultList();
+        
+
 
 
 

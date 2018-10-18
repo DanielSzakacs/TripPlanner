@@ -18,7 +18,7 @@ public class Location {
     @Enumerated(value = EnumType.STRING)
     private CityName cityName;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "location")
     private List<WalkingTour> walkingTour = new ArrayList<>();
 
     public Location(CityName cityName) {
