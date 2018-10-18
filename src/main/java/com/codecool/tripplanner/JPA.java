@@ -22,7 +22,7 @@ public class JPA {
     private JPA() {
         entityManagerFactory = Persistence.createEntityManagerFactory("jpaexamplePU");
         entityManager = entityManagerFactory.createEntityManager();
-        //buildDB();
+        buildDB();
     }
 
     public static void populateDb(EntityManager em) {
@@ -74,23 +74,21 @@ public class JPA {
 
     }
 
-//    public static void buildDB() {
-//        EntityManager em = entityManager;
-//        populateDb(em);
-//        em.clear();
-//        em.close();
-//        entityManagerFactory.close();
-//    }
-
-    public static void main(String[] args) {
-        getInstance();
+    public static void buildDB() {
         EntityManager em = entityManager;
         populateDb(em);
-
         em.clear();
         em.close();
         entityManagerFactory.close();
     }
 
-
+//    public static void main(String[] args) {
+//        getInstance();
+//        EntityManager em = entityManager;
+//        populateDb(em);
+//
+//        em.clear();
+//        em.close();
+//        entityManagerFactory.close();
+//    }
 }
