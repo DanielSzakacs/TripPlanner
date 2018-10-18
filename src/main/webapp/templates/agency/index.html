@@ -147,20 +147,15 @@
                         <div class="tab-pane fade show active" id="nav-places" role="tabpanel"
                              aria-labelledby="nav-places-tab">
                             <h6>What are you looking for?</h6>
-                            <form action="#" method="get">
-                                <select class="custom-select">
+                            <form action="/" method="post">
 
-                                    <!--options coming here from the db-->
-
-                                    <option selected>Your Destinations</option>
+                                <select class="custom-select" name="city">
+                                    <option selected value="nothing">Your Destinations</option>
                                     <option value="BUDAPEST">Budapest</option>
-                                    <!--<option value="2">Latvia</option>-->
-                                    <!--<option value="3">Dhaka</option>-->
-                                    <!--<option value="4">Melbourne</option>-->
-                                    <!--<option value="5">London</option>-->
                                 </select>
-                                <select class="custom-select">
-                                    <option selected>Genres</option>
+
+                                <select class="custom-select" name="genre">
+                                    <option selected value="nothing">Genres</option>
                                     <option value="ACTION">Action</option>
                                     <!--<option value="2">Catagories 2</option>-->
                                     <!--<option value="3">Catagories 3</option>-->

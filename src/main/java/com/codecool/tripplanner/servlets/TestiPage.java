@@ -2,6 +2,7 @@ package com.codecool.tripplanner.servlets;
 
 import com.codecool.tripplanner.JPA;
 import com.codecool.tripplanner.config.TemplateEngineUtil;
+import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -21,8 +22,6 @@ public class TestiPage extends HttpServlet {
         JPA.getEntityManager();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
-
-
        engine.process("agency/index.html", context, response.getWriter());
     }
 
@@ -31,9 +30,20 @@ public class TestiPage extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
+        NamedQueryHandler nqh  = new NamedQueryHandler();
 
-
-
+        String city = request.getParameter("city");
+        String genre = request.getParameter("genre");
+        if(!city.equals("nothing")){
+            System.out.println("CITY ======");
+            context.setVariable("result", nqh.getAllWalkingTourByCityName(city));
+        }
+        if(!genre.equals("nothing")){
+            System.out.println("======= genre");
+            context.setVariable("result", nqh.getAllWalkingTourByGenre(genre));
+        }else{
+            response.sendRedirect("/");
+        }
         engine.process("agency/index.html", context, response.getWriter());
     }
 }

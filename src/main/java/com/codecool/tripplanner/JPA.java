@@ -101,9 +101,9 @@ public class JPA {
     public static void buildDB() {
         EntityManager em = entityManager;
         populateDb(em);
-        em.clear();
-        em.close();
-        entityManagerFactory.close();
+//        em.clear();
+//        em.close();
+//        entityManagerFactory.close();
     }
 
 //    public static void main(String[] args) {

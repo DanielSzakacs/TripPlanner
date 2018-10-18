@@ -3,12 +3,11 @@ package com.codecool.tripplanner.searchHandler;
 import com.codecool.tripplanner.JPA;
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
-import com.codecool.tripplanner.moduls.Movie;
 import com.codecool.tripplanner.moduls.WalkingTour;
 
 import java.util.List;
 
-public class namedQueryHandler {
+public class NamedQueryHandler {
 
     public List<WalkingTour> getAllWalkingTourByCityName(String city){
         CityName enumCityName = CityName.valueOf(city);
