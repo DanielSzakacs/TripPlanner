@@ -378,26 +378,25 @@
         </div>
 
         <div class="row">
-            <!--<div class="col-12">-->
-                <!--<div class="features-slides owl-carousel">-->
+            <div class="col-12">
                     <!-- Single Features Area -->
-                    <div class="single-features-area">
-                        <!--<img src="static/img/bg-img/feature-diehard5.jpg" alt="">-->
-                        <!-- Price -->
-                        <div class="price-start">
-                            <p>FROM $59/tour</p>
-                        </div>
-                        <div class="feature-content d-flex align-items-center justify-content-between">
-                            <div class="feature-title">
-                                <h5>Tour name</h5>
-                                <p>Location</p>
-                                <p>Description</p>
-                            </div>
-                            <!--<div class="feature-favourite">-->
-                                <!--<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>-->
-                            <!--</div>-->
-                        </div>
+                <div th:each="data,iterStat : ${tours}" class="single-features-area">
+                    <img src="static/img/bg-img/feature-filmreel.jpg" class="img-fluid" alt="Responsive image">
+                    <!-- Price -->
+                    <div class="price-start">
+                        <p th:text="${data.getPrice()}">Price</p>
                     </div>
+                    <div class="feature-content d-flex align-items-center justify-content-between">
+                        <div class="feature-title">
+                            <h5 th:text="${data.getTourname()}"> Tour name</h5>
+                            <p th:text="${data.getDescription()}">Description</p>
+                            <p>Description</p>
+                        </div>
+                        <!--<div class="feature-favourite">-->
+                            <!--<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>-->
+                        <!--</div>-->
+                    </div>
+                </div>
                     <!--&lt;!&ndash; Single Features Area &ndash;&gt;-->
                     <!--<div class="single-features-area">-->
                         <!--<img src="static/img/bg-img/feature-2.jpg" alt="">-->
@@ -467,8 +466,7 @@
                         <!--</div>-->
                     <!--</div>-->
                 <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+        </div>
     </div>
 </section>
 <!-- ***** Features Destinations Area End ***** -->
