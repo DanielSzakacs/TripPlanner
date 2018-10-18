@@ -85,13 +85,6 @@ public class JPA {
         EntityManager em = entityManager;
         populateDb(em);
 
-
-        List<WalkingTour> result = em.createNamedQuery("Location.getAllWalkingtour").setParameter("cityname", CityName.BUDAPEST).getResultList();
-        for (WalkingTour name: result) {
-            System.out.println(name.getDescription());
-        }
-
-
         em.clear();
         em.close();
         entityManagerFactory.close();

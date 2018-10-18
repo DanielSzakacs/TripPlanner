@@ -4,7 +4,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@NamedQuery(name = "displayalltour",query = "SELECT w from WalkingTour w")
+@NamedQueries({
+    @NamedQuery(name = "displayalltour",query = "SELECT w from WalkingTour w"),
+    @NamedQuery(name = "Walkingtour.getAllWalkingtourByGenre", query = "SELECT s FROM WalkingTour s WHERE s.genre = :walkingtourgenre")
+})
 public class WalkingTour {
 
     @Id

@@ -34,4 +34,8 @@ public class Movie {
     public void addLocation(Location location){
         this.locations.add(location);
     }
+
+    public String getName() {
+        return name;
+    }
 }
