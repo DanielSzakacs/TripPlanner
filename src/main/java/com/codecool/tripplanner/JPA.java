@@ -24,12 +24,12 @@ public class JPA {
     public static void populateDb(EntityManager em) {
 
         Actor actor1 = new Actor("Bruce Willis");
-        Actor actor3 = new Actor("Gangsta Zolee");
+        Actor actor3 = new Actor("Ganxsta Zolee");
         Movie movie = new Movie("A Good Day to Die Hard", Genre.ACTION);
         Location location = new Location(CityName.BUDAPEST);
-        Timeslot timeslot = new Timeslot("2018/10/19 13:00", 15);
-        WalkingTour walkingTour = new WalkingTour("Die Hard 5 Tour",100, "Tour starts from Nyugati Pályaudvar.\n" +
-                "We are going through the famous Die Hard sequel 5th part shooting locations.",movie.getGenre());
+        Timeslot timeslot = new Timeslot("2018.10.19 13:00", 15);
+        WalkingTour walkingTour = new WalkingTour("Die Hard 5 Tour",100, "The tour starts from Nyugati palyaudvar.\n" +
+                "We are going through the famous Die Hard series' 5th part shooting locations.",movie.getGenre());
         movie.addActor(actor3);
         location.addMovie(movie);
         movie.addActor(actor1);
@@ -48,8 +48,8 @@ public class JPA {
         Movie movie1 = new Movie("I Spy", Genre.COMEDY);
         Location location1 = new Location(CityName.BUDAPEST);
         Timeslot timeslot1 = new Timeslot("2018.10.19 15:00",15);
-        WalkingTour walkingTour1 = new WalkingTour("I Spy Tour",80,"Tour starts from Nyugati pályaudvar\n" +
-                "Do you remmeber when Eddiy Murphy and Owen Wilson was hanging above the tunnel?Now you vna try out!",movie1.getGenre());
+        WalkingTour walkingTour1 = new WalkingTour("I Spy Tour",80,"The tour starts from Nyugati palyaudvar.\n" +
+                "Do you remember when Eddy Murphy and Owen Wilson was hanging above the tunnel? Now you can try that out!",movie1.getGenre());
         location.addMovie(movie1);
         movie1.addActor(actor2);
         movie1.addActor(actor4);
@@ -64,11 +64,11 @@ public class JPA {
 
         Actor actor6 = new Actor("Ron Perlman");
         Actor actor5 = new Actor("Selma Blair");
-        Movie movie2 = new Movie("I Spy", Genre.ACTION);
+        Movie movie2 = new Movie("Hellboy 2", Genre.ACTION);
         Location location2 = new Location(CityName.ETYEK);
         Timeslot timeslot2 = new Timeslot("2018.10.20 16:00",15);
-        WalkingTour walkingTour2 = new WalkingTour("Hellboy Tour",120,"Tour starts from Nyugati pályaudvar\n" +
-                "Do you like superheroes? Hellboy summoned from Hell to help the third Reich to win WWII.This tour you can meet with Ron Perlman",movie2.getGenre());
+        WalkingTour walkingTour2 = new WalkingTour("Hellboy 2 Tour",120,"The tour starts from Nyugati palyaudvar.\n" +
+                "Do you like superheroes? Hellboy is summoned from Hell to help the third Reich to win WWII.",movie2.getGenre());
         location.addMovie(movie2);
         movie2.addActor(actor5);
         movie2.addActor(actor6);
@@ -81,6 +81,47 @@ public class JPA {
         walkingTour2.addMovie(movie2);
         TripUser user2 = new TripUser("Timiii","password");
         user2.addToTimeSlot(timeslot2);
+
+        Actor actor7 = new Actor("Rudolf Péter");
+        Actor actor8 = new Actor("Reviczky Gábor");
+        Movie movie3 = new Movie("Uvegtigris", Genre.COMEDY);
+        Location location3 = new Location(CityName.TINNYE);
+        Timeslot timeslot3 = new Timeslot("2018.10.20 13:00",15);
+        WalkingTour walkingTour3 = new WalkingTour("Uvegtigris Tour",70,"The tour starts from Nyugati palyaudvar.\n" +
+                "You can visit the iconic places of the movie.",movie3.getGenre());
+        location.addMovie(movie3);
+        movie3.addActor(actor7);
+        movie3.addActor(actor8);
+        actor7.addMovieToList(movie3);
+        actor8.addMovieToList(movie3);
+        timeslot3.addWalkingTour(walkingTour3);
+        walkingTour3.addLocation(location3);
+        location3.addWalkingtour(walkingTour3);
+        walkingTour3.addTimeslot(timeslot3);
+        walkingTour3.addMovie(movie3);
+        TripUser user3 = new TripUser("Timiiii","password");
+        user3.addToTimeSlot(timeslot3);
+
+        Actor actor9 = new Actor("Nagy Ervin");
+        Actor actor10 = new Actor("Petrik Andrea");
+        Movie movie4 = new Movie("Kincsem", Genre.ADVENTURE);
+        Location location4 = new Location(CityName.KESZTHELY);
+        Timeslot timeslot4 = new Timeslot("2018.10.22 13:00",15);
+        WalkingTour walkingTour4 = new WalkingTour("Kincsem Tour",60,"The tour starts from Nyugati palyaudvar.\n" +
+                "You can visit the iconic places of the movie.",movie4.getGenre());
+        location.addMovie(movie4);
+        movie4.addActor(actor9);
+        movie4.addActor(actor10);
+        actor9.addMovieToList(movie4);
+        actor10.addMovieToList(movie4);
+        timeslot4.addWalkingTour(walkingTour4);
+        walkingTour4.addLocation(location4);
+        location4.addWalkingtour(walkingTour4);
+        walkingTour4.addTimeslot(timeslot4);
+        walkingTour4.addMovie(movie4);
+        TripUser user4 = new TripUser("Timiiiii","password");
+        user4.addToTimeSlot(timeslot4);
+
 
 
         EntityTransaction transaction = em.getTransaction();
@@ -108,6 +149,22 @@ public class JPA {
         em.persist(timeslot2);
         em.persist(walkingTour2);
         em.persist(user2);
+
+        em.persist(actor7);
+        em.persist(actor8);
+        em.persist(movie3);
+        em.persist(location3);
+        em.persist(timeslot3);
+        em.persist(walkingTour3);
+        em.persist(user3);
+
+        em.persist(actor9);
+        em.persist(actor10);
+        em.persist(movie4);
+        em.persist(location4);
+        em.persist(timeslot4);
+        em.persist(walkingTour4);
+        em.persist(user4);
 
         transaction.commit();
         System.out.println("Commitolva lett");

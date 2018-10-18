@@ -160,7 +160,7 @@
                                     <option value="ACTION">Action</option>
                                     <option value="COMEDY">Comedy</option>
                                     <option value="HORROR">Horror</option>
-                                    <option value="THRILLER">Thriller</option>
+                                    <option value="ADVENTURE">Adventure</option>
                                 </select>
                                 <select class="custom-select">
                                     <option selected>Price Range</option>
@@ -367,7 +367,7 @@
 
 <!-- ***** Features Destinations Area Start ***** -->
 <section class="dorne-features-destinations-area bg-default">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <!--<div class="section-heading dark text-center">-->
@@ -381,18 +381,20 @@
 
         <div class="row">
             <div class="col-12">
-                    <!-- Single Features Area -->
+                <div class="features-slides owl-carousel">
+
+                <!-- Single Features Area -->
                 <div th:each="data,iterStat : ${tours}" class="single-features-area">
-                    <img src="static/img/bg-img/feature-filmreel.jpg" class="img-fluid" alt="Responsive image">
+                    <img src="static/img/bg-img/feature-filmreel.jpg" class="" alt="">
                     <!-- Price -->
                     <div class="price-start">
-                        <p th:text="${data.getPrice()}">Price</p>
+                        <p th:text="'$' + ${data.getPrice()}">Price</p>
                     </div>
                     <div class="feature-content d-flex align-items-center justify-content-between">
                         <div class="feature-title">
                             <h5 th:text="${data.getTourname()}"> Tour name</h5>
+                            <p>Location</p>
                             <p th:text="${data.getDescription()}">Description</p>
-                            <p>Description</p>
                         </div>
                         <!--<div class="feature-favourite">-->
                             <!--<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>-->
