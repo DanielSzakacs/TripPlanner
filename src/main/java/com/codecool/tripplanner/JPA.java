@@ -157,6 +157,7 @@ public class JPA {
         em.clear();
         em.close();
         entityManagerFactory.close();
+
     }
 
 
