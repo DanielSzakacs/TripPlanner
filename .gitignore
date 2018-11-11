@@ -19,5 +19,5 @@ target/
 *.xml
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-/Users/danielszakacs/Documents/Advanced/TripPlanner/src/main/java/com/codecool/angular/frontend
+.Users/danielszakacs/Documents/Advanced/TripPlanner/src/main/java/com/codecool/angular/frontend
 .Users/danielszakacs/Documents/OOP/getPartner/src/main/java/com/codecool/getpartner/sql/ConnectingDB.java
