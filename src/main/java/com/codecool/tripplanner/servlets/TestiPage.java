@@ -1,63 +1,66 @@
 package com.codecool.tripplanner.servlets;
+import org.apache.logging.log4j.core.jackson.Log4jJsonObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import com.codecool.tripplanner.JPA;
-import com.codecool.tripplanner.config.TemplateEngineUtil;
-import com.codecool.tripplanner.moduls.*;
-import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
-
-import javax.persistence.EntityManager;
+import javax.json.Json;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 
-@WebServlet(name = "TestingPage", urlPatterns = {"/"})
+@WebServlet(name = "TestingPage", urlPatterns = {"/data"})
 @MultipartConfig
 public class TestiPage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
-        WebContext context = new WebContext(request, response, request.getServletContext());
+        String jsonData = Json.createObjectBuilder()
+                .add("name", "Daniel")
+                .add("location", "Ukraine")
+                .build()
+                .toString();
 
 
-        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
-        List<Timeslot> timeslots = JPA.getEntityManager().createNamedQuery("getalltimeslot").getResultList();
-        List<Movie> movies = JPA.getEntityManager().createNamedQuery("getallmovies").getResultList();
-        List<Location> locations = JPA.getEntityManager().createNamedQuery("getalllocations").getResultList();
-        List<Actor> actors = JPA.getEntityManager().createNamedQuery("getallactors").getResultList();
+//        response.setHeader("Access-Control-Allow-Origin", "*");
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
+//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
+//        response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-auth-token, "
+//                + "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
-        context.setVariable("tours",tours);
-        context.setVariable("locations",locations);
-
-
-       engine.process("agency/index.html", context, response.getWriter());
-
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        out.print(jsonData);
+        //out.flush();
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
-        WebContext context = new WebContext(request, response, request.getServletContext());
-        NamedQueryHandler nqh  = new NamedQueryHandler();
+//        response.setHeader("Access-Control-Allow-Origin", "*");
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
+//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
+//        response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-auth-token, "
+//                + "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
-        String city = request.getParameter("city");
-        String genre = request.getParameter("genre");
-        if(!city.equals("nothing")){
-            context.setVariable("tours", nqh.getAllWalkingTourByCityName(city));
-        }else if(!genre.equals("nothing")){
-            context.setVariable("tours", nqh.getAllWalkingTourByGenre(genre));
-        }else{
-            response.sendRedirect("/");
+        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        String json = "";
+        if(br != null){
+            json = br.readLine();
         }
-        engine.process("agency/index.html", context, response.getWriter());
+        System.out.println(json);
+
+
     }
+
+//    public void getSomthingFromAJson(){
+//        ObjectMapper mapper = new ObjectMapper();
+//        Map<String, String> mappedJsonData = objectMapper.re
+//    }
 }
