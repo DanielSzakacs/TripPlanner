@@ -20,6 +20,6 @@ target/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# angular staff
+# angular staff in 'frontend' folder
 frontend/
 .Users/danielszakacs/Documents/OOP/getPartner/src/main/java/com/codecool/getpartner/sql/ConnectingDB.java
