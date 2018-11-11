@@ -28,26 +28,13 @@ public class TestiPage extends HttpServlet {
                 .toString();
 
 
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setHeader("Access-Control-Allow-Credentials", "true");
-//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
-//        response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-auth-token, "
-//                + "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         out.print(jsonData);
-        //out.flush();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setHeader("Access-Control-Allow-Credentials", "true");
-//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
-//        response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-auth-token, "
-//                + "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "";
@@ -56,11 +43,5 @@ public class TestiPage extends HttpServlet {
         }
         System.out.println(json);
 
-
     }
-
-//    public void getSomthingFromAJson(){
-//        ObjectMapper mapper = new ObjectMapper();
-//        Map<String, String> mappedJsonData = objectMapper.re
-//    }
 }
