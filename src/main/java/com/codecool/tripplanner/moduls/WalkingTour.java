@@ -20,7 +20,7 @@ public class WalkingTour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany
     private List<Movie> movies = new ArrayList<>();
 
     @OneToOne

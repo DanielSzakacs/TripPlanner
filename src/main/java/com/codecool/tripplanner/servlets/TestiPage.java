@@ -1,4 +1,9 @@
 package com.codecool.tripplanner.servlets;
+import com.codecool.tripplanner.JPA;
+import com.codecool.tripplanner.enums.CityName;
+import com.codecool.tripplanner.moduls.Location;
+import com.codecool.tripplanner.moduls.WalkingTour;
+import com.google.gson.Gson;
 import org.apache.logging.log4j.core.jackson.Log4jJsonObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -21,6 +29,22 @@ public class TestiPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        HashMap<String,List> Hashtours = new HashMap<>();
+        List<String> walkingtour = new ArrayList<>();
+        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
+
+        for (int i = 0; i < tours.size(); i++) {
+            walkingtour.add(Integer.toString(tours.get(i).getPrice()));
+            walkingtour.add(tours.get(i).getTourname());
+            walkingtour.add(tours.get(i).getDescription());
+            walkingtour.add(tours.get(i).getLocations().toString());
+            List newArrayList = (ArrayList) ((ArrayList<String>) walkingtour).clone();
+            Hashtours.put("walkingtour" + Integer.toString(i),newArrayList);
+            walkingtour.clear();
+        }
+
+        String jsonTourData = new Gson().toJson(Hashtours);
+
         String jsonData = Json.createObjectBuilder()
                 .add("name", "Daniel")
                 .add("location", "Ukraine")
@@ -30,7 +54,7 @@ public class TestiPage extends HttpServlet {
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.print(jsonData);
+        out.print(jsonTourData);
     }
 
     @Override
