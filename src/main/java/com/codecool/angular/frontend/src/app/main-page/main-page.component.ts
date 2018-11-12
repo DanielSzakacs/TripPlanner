@@ -5,10 +5,10 @@ import {HttpClient} from "@angular/common/http";
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./static/css/bootstrap/bootstrap.min.css', './static/css/others/pe-icon-7-stroke.css', './static/css/others/magnific-popup.css', './static/css/others/animate.css',
-  './static/css/responsive/responsive.css']
+  './static/css/responsive/responsive.css', './main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  logo = './static/img/core-img/logo.png';
+  logo = '/static/img/core-img/logo.png';
 
   constructor(private http: HttpClient) { }
 
