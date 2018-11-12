@@ -1,12 +1,12 @@
 package com.codecool.tripplanner.servlets;
 import com.codecool.tripplanner.JPA;
-import com.codecool.tripplanner.enums.CityName;
-import com.codecool.tripplanner.moduls.Location;
+import com.codecool.tripplanner.config.TemplateEngineUtil;
 import com.codecool.tripplanner.moduls.WalkingTour;
+import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
 import com.google.gson.Gson;
-import org.apache.logging.log4j.core.jackson.Log4jJsonObjectMapper;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+
 
 import javax.json.Json;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @WebServlet(name = "TestingPage", urlPatterns = {"/data"})
@@ -60,12 +59,28 @@ public class TestiPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "";
         if(br != null){
             json = br.readLine();
         }
         System.out.println(json);
+
+        String data = new Gson().fromJson(json, String.class);
+
+
+        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
+        WebContext context = new WebContext(request, response, request.getServletContext());
+        NamedQueryHandler nqh  = new NamedQueryHandler();
+
+        String city = "";
+        String genre = "";
+
+        context.setVariable("tours", nqh.getAllWalkingTour(city,genre));
+        engine.process("agency/index.html", context, response.getWriter());
+
+
 
     }
 }
