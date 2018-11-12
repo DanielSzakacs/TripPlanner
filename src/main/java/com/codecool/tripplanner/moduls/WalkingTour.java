@@ -9,8 +9,10 @@ import java.util.List;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "displayalltour",query = "SELECT w from WalkingTour w"),
-    @NamedQuery(name = "Walkingtour.getAllWalkingtourByGenre", query = "SELECT s FROM WalkingTour s WHERE s.moviegenre = :walkingtourgenre"),
-    @NamedQuery(name = "Walkingtour.getAllWalkingtourByLocation", query = "SELECT s FROM WalkingTour s WHERE s.cityName = :cityName")
+    @NamedQuery(name = "Walkingtour.getAllWalkingtour",
+            query = "SELECT s FROM WalkingTour s WHERE " +
+            "(s.moviegenre = :walkingtourgenre OR :walkingtourgenre IS NULL OR :walkingtourgenre = '') AND " +
+            "(s.cityName = :cityName OR :cityName IS NULL or :cityName = '')" )
 })
 public class WalkingTour {
 
@@ -18,7 +20,7 @@ public class WalkingTour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "")
     private List<Movie> movies = new ArrayList<>();
 
     @OneToOne
