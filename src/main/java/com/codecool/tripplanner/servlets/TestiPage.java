@@ -32,16 +32,16 @@ public class TestiPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        HashMap<String,List> Hashtours = new HashMap<>();
-        List<String> walkingtour = new ArrayList<>();
+        HashMap<String,HashMap> Hashtours = new HashMap<>();
+        HashMap<String,String> walkingtour = new HashMap<>();
         List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
 
         for (int i = 0; i < tours.size(); i++) {
-            walkingtour.add(Integer.toString(tours.get(i).getPrice()));
-            walkingtour.add(tours.get(i).getTourname());
-            walkingtour.add(tours.get(i).getDescription());
+            walkingtour.put("price",Integer.toString(tours.get(i).getPrice()));
+            walkingtour.put("tourname",tours.get(i).getTourname());
+            walkingtour.put("description",tours.get(i).getDescription());
             //walkingtour.add(tours.get(i).getLocations().toString());
-            List newArrayList = (ArrayList) ((ArrayList<String>) walkingtour).clone();
+            HashMap<String,String> newArrayList = (HashMap<String, String>) walkingtour.clone();
             Hashtours.put("walkingtour" + Integer.toString(i),newArrayList);
             walkingtour.clear();
         }
