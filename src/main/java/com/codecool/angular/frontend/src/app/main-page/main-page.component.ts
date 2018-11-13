@@ -8,13 +8,13 @@ import {HttpClient} from "@angular/common/http";
     './static/css/responsive/responsive.css', './main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  result;
-  config;
+  result = [];
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
+    this.getAll();
   }
 
   search(data) {
@@ -22,8 +22,9 @@ export class MainPageComponent implements OnInit {
     ).subscribe(
       res => {
         console.log('Passing the json is done');
-        console.log(res);
-        this.result = res;
+        this.result.pop();
+        this.result.push(res);
+        console.log(this.result);
       },
       err => {
         alert('Please fill out all fields');
@@ -31,21 +32,8 @@ export class MainPageComponent implements OnInit {
     );
   }
 
- //This is the part when you get the searched information via json.
-  getResults() {
-    this.http.get("http://localhost:8088/data").subscribe(
-      res => {
-        console.log(res);
-        this.result = res;
-      },
-      err =>{
-        alert('Your JSON is not working');
-      }
-    );
-  }
-
-  getS(){
-    this.http.get('http://localhost:8088/data').subscribe((data) => this.result = data);
+  getAll(){
+    this.http.get('http://localhost:8088/data').subscribe((data) => this.result.push(data), error1 => {console.log(error1)});
     console.log(this.result);
   }
 

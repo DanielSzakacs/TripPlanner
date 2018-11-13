@@ -148,7 +148,26 @@
       </div>
     </div>
   <!-- TODO This is a part what need to be rewrite-->
-    <button (click)="getS()">Click</button>
+
+    <!--<div *ngFor="let table of result">-->
+      <!--<div>-->
+        <!--{{table.}}-->
+      <!--</div>-->
+    <!--</div>-->
+    <table>
+      <ng-container *ngFor="let row of result">
+          <td> {{ row.walkingtour0.description }} </td>
+        </ng-container>
+    </table>
+
+
+    <!--<ul>-->
+      <!--<li *ngFor="let offer of result" style="border-style: solid">-->
+        <!--{{offer.description}}-->
+      <!--</li>-->
+    <!--</ul>-->
+
+
     <div class="offer-border">
       <div class="picture-border">
         <!-- Picture -->
