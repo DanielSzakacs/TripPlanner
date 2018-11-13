@@ -56,6 +56,7 @@ public class WalkingTour {
         this.price = price;
         this.description = description;
         this.moviegenre = genre;
+
         this.tourname = name;
         this.cityName = cityName;
     }
