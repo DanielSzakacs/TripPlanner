@@ -56,4 +56,11 @@ public class Location {
     public void addMovie(Movie movie){
         this.movies.add(movie);
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "cityName=" + cityName +
+                '}';
+    }
 }

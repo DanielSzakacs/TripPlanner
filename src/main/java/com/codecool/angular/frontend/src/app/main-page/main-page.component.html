@@ -1,0 +1,198 @@
+<!-- Preloader -->
+<div id="preloader">
+  <div class="dorne-load"></div>
+</div>
+
+<!-- ***** Header Area Start ***** -->
+<header class="header_area" id="header">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="col-12 h-100">
+        <nav class="h-100 navbar navbar-expand-lg">
+          <a class="navbar-brand" href="templates/agency/index.html"><img src="./assets/img/core-img/logo.png"/></a> <!-- TODO src-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+                  aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span></button>
+          <!--Nav -->
+          <div class="collapse navbar-collapse" id="dorneNav">
+            <ul class="navbar-nav mr-auto" id="dorneMenu">
+              <!--<li class="nav-item active">-->
+              <!--<a class="nav-link" href="templates/agency/index.html">Home <span class="sr-only">(current)</span></a>-->
+              <!--</li>-->
+              <!--<li class="nav-item dropdown">-->
+              <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
+              <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i-->
+              <!--class="fa fa-angle-down" aria-hidden="true"></i></a>-->
+              <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+              <!--<a class="dropdown-item" href="templates/agency/index.html">Home</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/explore.html">Explore</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/listing.html">Listing</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/single-listing.html">Single Listing</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/contact.html">Contact</a>-->
+              <!--</div>-->
+              <!--</li>-->
+              <!--<li class="nav-item dropdown">-->
+              <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"-->
+              <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings-->
+              <!--<i class="fa fa-angle-down" aria-hidden="true"></i></a>-->
+              <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown2">-->
+              <!--<a class="dropdown-item" href="templates/agency/index.html">Home</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/explore.html">Explore</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/listing.html">Listing</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/single-listing.html">Single Listing</a>-->
+              <!--<a class="dropdown-item" href="templates/agency/contact.html">Contact</a>-->
+              <!--</div>-->
+              <!--</li>-->
+              <!--<li class="nav-item">-->
+              <!--<a class="nav-link" href="templates/agency/contact.html">Contact</a>-->
+              <!--</li>-->
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+<!-- ***** Welcome Area Start ***** -->
+<section class="dorne-welcome-area bg-img bg-overlay" style="height: 100%; width: 100%; object-fit:contain ; background-image: url(./assets/img/bg-img/hero-bp.jpg);"> <!-- TODO this url not work-->
+  <div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center">
+      <div class="col-12 col-md-10">
+        <div class="hero-content">
+          <h4>Discover interesting movie sights in Hungary</h4>
+        </div>
+        <!-- Hero Search Form -->
+        <div class="hero-search-form">
+          <!-- Tabs -->
+          <div class="nav nav-tabs" id="heroTab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places"
+               role="tab" aria-controls="nav-places" aria-selected="true">Offers</a>
+          </div>
+          <!-- Tabs Content -->
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-places" role="tabpanel"
+                 aria-labelledby="nav-places-tab">
+              <p></p>
+              <form #searchingField = "ngForm" (submit)="search(searchingField.value)">
+                <select class="custom-select" name="city" ngModel>
+                  <option selected>Your Destinations</option>
+                  <option value="BUDAPEST">Budapest</option>
+                  <option value="ETYEK">Etyek</option>
+                  <option value="TINNYE">Tinnye</option>
+                  <option value="KESZTHELY">Keszthely</option>
+                </select>
+
+                <select class="custom-select" name="genre" ngModel>
+                  <option selected >Genres</option>
+                  <option value="ACTION">Action</option>
+                  <option value="COMEDY">Comedy</option>
+                  <option value="HORROR">Horror</option>
+                  <option value="ADVENTURE">Adventure</option>
+                </select>
+
+                <select class="custom-select" name="price" ngModel>
+                  <option selected>Price Range</option>
+                  <option value="1">$0 - $499</option>
+                  <option value="2">$500 - $999</option>
+                  <option value="3">$1000 - $4999</option>
+                </select>
+                <button type="submit" class="btn dorne-btn">
+                  <i class="fa fa-search pr-2" aria-hidden="true"></i>Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero Social Btn -->
+  <div class="hero-social-btn">
+    <div class="social-btns">
+      <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+      <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+      <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+      <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+      <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+    </div>
+  </div>
+</section>
+<!-- ***** Welcome Area End ***** -->
+
+<!-- ***** About Area Start ***** -->
+<section class="dorne-about-area section-padding-0-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="about-content text-center">
+          <h2>Discover your city with <br><span>Whatever Film Agency</span></h2>
+          <p>We offer the most authentic and detailed tours about movie shooting sights.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ***** About Area End ***** -->
+
+<!-- ***** Features Destinations Area Start ***** -->
+<section class="dorne-features-destinations-area bg-default">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!--<div class="section-heading dark text-center">-->
+        <div class="section-heading text-center">
+          <span></span>
+          <h4>Offers</h4>
+        </div>
+      </div>
+    </div>
+  <!-- TODO This is a part what need to be rewrite-->
+    <div class="offer-border">
+      <div class="picture-border">
+        <!-- Picture -->
+        <img src="./assets/img/bg-img/feature-filmreel.jpg" />
+      </div>
+
+    </div>
+    <!--<div class="row">-->
+      <!--<div class="col-12">-->
+        <!--&lt;!&ndash;<div class="features-slides owl-carousel">&ndash;&gt;-->
+        <!--&lt;!&ndash; Single Features Area &ndash;&gt;-->
+        <!--<div th:each="data,iterStat : ${tours}" class="single-features-area">-->
+          <!--<img src="static/img/bg-img/feature-filmreel.jpg" class="" alt="">-->
+          <!--&lt;!&ndash; Price &ndash;&gt;-->
+          <!--<div class="price-start">-->
+            <!--<p th:text="'$' + ${data.getPrice()}">Price</p>-->
+          <!--</div>-->
+          <!--<div class="feature-content d-flex align-items-center justify-content-between">-->
+            <!--<div class="feature-title">-->
+              <!--<h5 th:text="${data.getTourname()}"> Tour name</h5>-->
+              <!--<p>Location</p>-->
+              <!--<p th:text="${data.getDescription()}">Description</p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+</section>
+<!-- ***** Features Destinations Area End ***** -->
+
+<!-- ****** Footer Area Start ****** -->
+<footer class="dorne-footer-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 d-md-flex align-items-center justify-content-between">
+        <div class="footer-social-btns">
+          <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+          <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+          <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

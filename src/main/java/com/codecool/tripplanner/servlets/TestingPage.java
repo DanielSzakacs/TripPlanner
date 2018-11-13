@@ -1,10 +1,18 @@
 package com.codecool.tripplanner.servlets;
-import jdk.nashorn.internal.parser.JSONParser;
+import com.codecool.tripplanner.JPA;
+import com.codecool.tripplanner.config.TemplateEngineUtil;
+import com.codecool.tripplanner.moduls.WalkingTour;
+import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
+import com.google.gson.Gson;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONArray;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+
 
 import javax.json.Json;
+import org.json.JSONObject;
+
+import javax.json.JsonObject;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 @WebServlet(name = "TestingPage", urlPatterns = {"/data"})
@@ -30,15 +38,28 @@ public class TestingPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String jsonData = Json.createObjectBuilder()
-                .add("name", "Daniel")
-                .add("location", "Ukraine")
-                .build()
-                .toString();
+        HashMap<String,HashMap> Hashtours = new HashMap<>();
+        HashMap<String,String> walkingtour = new HashMap<>();
+        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
+
+        for (int i = 0; i < tours.size(); i++) {
+            walkingtour.put("price",Integer.toString(tours.get(i).getPrice()));
+            walkingtour.put("tourname",tours.get(i).getTourname());
+            walkingtour.put("description",tours.get(i).getDescription());
+            //walkingtour.add(tours.get(i).getLocations().toString());
+            HashMap<String,String> newArrayList = (HashMap<String, String>) walkingtour.clone();
+            Hashtours.put("walkingtour" + Integer.toString(i),newArrayList);
+            walkingtour.clear();
+        }
+
+        String jsonTourData = new Gson().toJson(Hashtours);
+
 
 
         response.setContentType("application/json");
-        response.getWriter().print(jsonData);
+        response.getWriter().print(jsonTourData);
+        PrintWriter out = response.getWriter();
+        out.print(jsonTourData);
     }
 
     @Override
@@ -52,21 +73,34 @@ public class TestingPage extends HttpServlet {
 //        System.out.println(json);
 
 
-//        JSONObject obj = null;
+
+        String city = "";
+        String genre = "";
+
         try {
-            JSONObject obj = new JSONObject(json);
-            String name = obj.getString("name");
-            String location = obj.getString("location");
-
-//            System.out.println(name);
-
-//            JSONArray arr = obj.getJSONArray("posts");
-//            for (int i = 0; i < arr.length(); i++) {
-//                String post_id = arr.getJSONObject(i).getString("post_id");
-//                System.out.println(post_id);
-//            }
+            JSONObject data = new JSONObject(json);
+            city = data.getJSONObject("data").getString("city");
+            genre = data.getJSONObject("data").getString("genre");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
+        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
+        WebContext context = new WebContext(request, response, request.getServletContext());
+        NamedQueryHandler nqh  = new NamedQueryHandler();
+
+
+
+        context.setVariable("tours", nqh.getAllWalkingTour(city,genre));
+        engine.process("agency/index.html", context, response.getWriter());
+
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        out.print(nqh.getAllWalkingTour(city,genre));
+
+
+
     }
 }
