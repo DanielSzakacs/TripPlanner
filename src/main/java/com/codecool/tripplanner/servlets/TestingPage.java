@@ -1,7 +1,8 @@
 package com.codecool.tripplanner.servlets;
-import org.apache.logging.log4j.core.jackson.Log4jJsonObjectMapper;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import javax.json.Json;
 import javax.servlet.annotation.MultipartConfig;
@@ -11,12 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 @WebServlet(name = "TestingPage", urlPatterns = {"/data"})
 @MultipartConfig
-public class TestiPage extends HttpServlet {
+public class TestingPage extends HttpServlet {
+
+    private final String jsonData;
+
+    public TestingPage (String jsonData){
+        this.jsonData = jsonData;
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -29,8 +38,7 @@ public class TestiPage extends HttpServlet {
 
 
         response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        out.print(jsonData);
+        response.getWriter().print(jsonData);
     }
 
     @Override
@@ -41,7 +49,24 @@ public class TestiPage extends HttpServlet {
         if(br != null){
             json = br.readLine();
         }
-        System.out.println(json);
+//        System.out.println(json);
 
+
+//        JSONObject obj = null;
+        try {
+            JSONObject obj = new JSONObject(json);
+            String name = obj.getString("name");
+            String location = obj.getString("location");
+
+//            System.out.println(name);
+
+//            JSONArray arr = obj.getJSONArray("posts");
+//            for (int i = 0; i < arr.length(); i++) {
+//                String post_id = arr.getJSONObject(i).getString("post_id");
+//                System.out.println(post_id);
+//            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
