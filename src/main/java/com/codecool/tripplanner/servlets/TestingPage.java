@@ -1,13 +1,10 @@
 package com.codecool.tripplanner.servlets;
 import com.codecool.tripplanner.JPA;
-import com.codecool.tripplanner.config.TemplateEngineUtil;
 import com.codecool.tripplanner.moduls.WalkingTour;
 import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.json.JSONException;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -25,16 +22,11 @@ import java.util.Map;
 @MultipartConfig
 public class TestingPage extends HttpServlet {
 
-    private String jsonTourData;
 
-    public TestingPage (){
-        this.jsonTourData = createJSON();
-    }
-
-    private Map<String,HashMap> createToursForJSON() {
+    private Map<String,HashMap> createHashMap(List<WalkingTour> walkingTours) {
         HashMap<String,HashMap> hashTours = new HashMap<>();
         HashMap<String,String> walkingTour = new HashMap<>();
-        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
+        List<WalkingTour> tours = walkingTours;
 
         for (int i = 0; i < tours.size(); i++) {
             walkingTour.put("price",Integer.toString(tours.get(i).getPrice()));
@@ -48,31 +40,17 @@ public class TestingPage extends HttpServlet {
         return hashTours;
     }
 
-    private String createJSON(){
-        return new Gson().toJson(createToursForJSON());
+    private String createJSON(List<WalkingTour> walkingTours){
+        return new Gson().toJson(createHashMap(walkingTours));
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-//        HashMap<String,HashMap> Hashtours = new HashMap<>();
-//        HashMap<String,String> walkingtour = new HashMap<>();
-//        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
-//
-//        for (int i = 0; i < tours.size(); i++) {
-//            walkingtour.put("price",Integer.toString(tours.get(i).getPrice()));
-//            walkingtour.put("tourname",tours.get(i).getTourname());
-//            walkingtour.put("description",tours.get(i).getDescription());
-//            //walkingtour.add(tours.get(i).getLocations().toString());
-//            HashMap<String,String> newArrayList = (HashMap<String, String>) walkingtour.clone();
-//            Hashtours.put("walkingtour" + Integer.toString(i),newArrayList);
-//            walkingtour.clear();
-//        }
 
-//        String jsonTourData = new Gson().toJson(Hashtours);
 
         response.setContentType("application/json");
-        response.getWriter().print(jsonTourData);
+        response.getWriter().print(createJSON(JPA.getEntityManager().createNamedQuery("displayalltour").getResultList()));
 //        PrintWriter out = response.getWriter();
 //        out.print(jsonTourData);
     }
@@ -107,25 +85,9 @@ public class TestingPage extends HttpServlet {
         //context.setVariable("tours", nqh.getAllWalkingTour(city,genre));
         //engine.process("agency/index.html", context, response.getWriter());
 
-        HashMap<String,HashMap> Hashtours = new HashMap<>();
-        HashMap<String,String> walkingtour = new HashMap<>();
-        List<WalkingTour> walkingTourList = nqh.getAllWalkingTour(city,genre);
-
-        for (int i = 0; i < walkingTourList.size(); i++) {
-            walkingtour.put("price",Integer.toString(walkingTourList.get(i).getPrice()));
-            walkingtour.put("tourname",walkingTourList.get(i).getTourname());
-            walkingtour.put("description",walkingTourList.get(i).getDescription());
-            //walkingTourList.add(tours.get(i).getLocations().toString());
-            HashMap<String,String> newHashList = (HashMap<String, String>) walkingtour.clone();
-            Hashtours.put("walkingtour" + Integer.toString(i),newHashList);
-            walkingtour.clear();
-        }
-
-        String filteredJsonTourData = new Gson().toJson(Hashtours);
-
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.print(filteredJsonTourData);
+        out.print(createJSON(nqh.getAllWalkingTour(city,genre)));
 
     }
 }
