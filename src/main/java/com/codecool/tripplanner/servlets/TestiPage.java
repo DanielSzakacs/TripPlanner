@@ -77,15 +77,30 @@ public class TestiPage extends HttpServlet {
 
 //        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
 //        WebContext context = new WebContext(request, response, request.getServletContext());
-//        NamedQueryHandler nqh  = new NamedQueryHandler();
+        NamedQueryHandler nqh  = new NamedQueryHandler();
 
         //context.setVariable("tours", nqh.getAllWalkingTour(city,genre));
         //engine.process("agency/index.html", context, response.getWriter());
 
+        HashMap<String,HashMap> Hashtours = new HashMap<>();
+        HashMap<String,String> walkingtour = new HashMap<>();
+        List<WalkingTour> walkingTourList = nqh.getAllWalkingTour(city,genre);
+
+        for (int i = 0; i < walkingTourList.size(); i++) {
+            walkingtour.put("price",Integer.toString(walkingTourList.get(i).getPrice()));
+            walkingtour.put("tourname",walkingTourList.get(i).getTourname());
+            walkingtour.put("description",walkingTourList.get(i).getDescription());
+            //walkingTourList.add(tours.get(i).getLocations().toString());
+            HashMap<String,String> newHashList = (HashMap<String, String>) walkingtour.clone();
+            Hashtours.put("walkingtour" + Integer.toString(i),newHashList);
+            walkingtour.clear();
+        }
+
+        String filteredJsonTourData = new Gson().toJson(Hashtours);
+
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-//        out.print(nqh.getAllWalkingTour(city,genre));
-        out.print("{\"success\":true}");
+        out.print(filteredJsonTourData);
 
     }
 }
