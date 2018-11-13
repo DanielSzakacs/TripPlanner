@@ -23,11 +23,10 @@ export class MainPageComponent implements OnInit {
       res => {
         console.log('Passing the json is done');
         console.log(res);
-        //this.getResults();
-        //this.getS();
+        this.result = res;
       },
       err => {
-        console.log(err);
+        alert('Please fill out all fields');
       }
     );
   }

@@ -48,8 +48,6 @@ public class TestiPage extends HttpServlet {
 
         String jsonTourData = new Gson().toJson(Hashtours);
 
-
-
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         out.print(jsonTourData);
@@ -76,7 +74,6 @@ public class TestiPage extends HttpServlet {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
 //        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
 //        WebContext context = new WebContext(request, response, request.getServletContext());
