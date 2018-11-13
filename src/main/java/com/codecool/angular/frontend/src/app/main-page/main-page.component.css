@@ -2,3 +2,17 @@
   padding-top: 2em;
   padding-bottom: 15em;
 }
+
+.picture-border{
+  border-right-color: black;
+  border-right-style: solid;
+  border-radius: 2%;
+  float: right;
+}
+
+.offer-border{
+  border-style: solid;
+  border-color: black;
+  padding-right: 25em;
+  float: right;
+}
