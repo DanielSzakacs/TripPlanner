@@ -9,6 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MainPageComponent implements OnInit {
   result;
+  config;
 
   constructor(private http: HttpClient) {
   }
@@ -21,13 +22,16 @@ export class MainPageComponent implements OnInit {
     ).subscribe(
       res => {
         console.log('Passing the json is done');
-        this.getResults();
+        console.log(res);
+        //this.getResults();
+        //this.getS();
       },
       err => {
-        console.log('Sorry but something went wrong!');
+        console.log(err);
       }
     );
   }
+
  //This is the part when you get the searched information via json.
   getResults() {
     this.http.get("http://localhost:8088/data").subscribe(
@@ -39,6 +43,11 @@ export class MainPageComponent implements OnInit {
         alert('Your JSON is not working');
       }
     );
+  }
+
+  getS(){
+    this.http.get('http://localhost:8088/data').subscribe((data) => this.result = data);
+    console.log(this.result);
   }
 
 }

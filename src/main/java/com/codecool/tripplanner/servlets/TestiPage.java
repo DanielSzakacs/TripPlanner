@@ -66,7 +66,6 @@ public class TestiPage extends HttpServlet {
         }
         System.out.println(json);
 
-
         String city = "";
         String genre = "";
 
@@ -79,21 +78,17 @@ public class TestiPage extends HttpServlet {
         }
 
 
+//        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
+//        WebContext context = new WebContext(request, response, request.getServletContext());
+//        NamedQueryHandler nqh  = new NamedQueryHandler();
 
-        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
-        WebContext context = new WebContext(request, response, request.getServletContext());
-        NamedQueryHandler nqh  = new NamedQueryHandler();
-
-
-
-        context.setVariable("tours", nqh.getAllWalkingTour(city,genre));
-        engine.process("agency/index.html", context, response.getWriter());
+        //context.setVariable("tours", nqh.getAllWalkingTour(city,genre));
+        //engine.process("agency/index.html", context, response.getWriter());
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.print(nqh.getAllWalkingTour(city,genre));
-
-
+//        out.print(nqh.getAllWalkingTour(city,genre));
+        out.print("{\"success\":true}");
 
     }
 }
