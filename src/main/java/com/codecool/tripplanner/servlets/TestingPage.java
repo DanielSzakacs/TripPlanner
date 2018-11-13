@@ -3,6 +3,7 @@ import com.codecool.tripplanner.JPA;
 import com.codecool.tripplanner.moduls.WalkingTour;
 import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
 import com.google.gson.Gson;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -23,7 +24,7 @@ import java.util.Map;
 public class TestingPage extends HttpServlet {
 
 
-    private Map<String,HashMap> createHashMap(List<WalkingTour> walkingTours) {
+    private Map<String,HashMap> createHashMap(List<WalkingTour> walkingTours) throws JSONException {
         HashMap<String,HashMap> hashTours = new HashMap<>();
         HashMap<String,String> walkingTour = new HashMap<>();
         List<WalkingTour> tours = walkingTours;
@@ -40,7 +41,7 @@ public class TestingPage extends HttpServlet {
         return hashTours;
     }
 
-    private String createJSON(List<WalkingTour> walkingTours){
+    private String createJSON(List<WalkingTour> walkingTours) throws JSONException {
         return new Gson().toJson(createHashMap(walkingTours));
     }
 
@@ -49,8 +50,21 @@ public class TestingPage extends HttpServlet {
 
 
 
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name","david");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        jsonArray.put(jsonObject);
         response.setContentType("application/json");
-        response.getWriter().print(createJSON(JPA.getEntityManager().createNamedQuery("displayalltour").getResultList()));
+        try {
+            response.getWriter().print(createJSON(JPA.getEntityManager().createNamedQuery("displayalltour").getResultList()));
+            response.getWriter().print(jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 //        PrintWriter out = response.getWriter();
 //        out.print(jsonTourData);
     }
@@ -87,7 +101,11 @@ public class TestingPage extends HttpServlet {
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.print(createJSON(nqh.getAllWalkingTour(city,genre)));
+        try {
+            out.print(createJSON(nqh.getAllWalkingTour(city,genre)));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 }
