@@ -4,15 +4,11 @@ import com.codecool.tripplanner.config.TemplateEngineUtil;
 import com.codecool.tripplanner.moduls.WalkingTour;
 import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
 import com.google.gson.Gson;
+import org.json.JSONObject;
 import org.json.JSONException;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-
-import javax.json.Json;
-import org.json.JSONObject;
-
-import javax.json.JsonObject;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,46 +16,65 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @WebServlet(name = "TestingPage", urlPatterns = {"/data"})
 @MultipartConfig
 public class TestingPage extends HttpServlet {
 
-    private final String jsonData;
+    private String jsonTourData;
 
-    public TestingPage (String jsonData){
-        this.jsonData = jsonData;
+    public TestingPage (){
+        this.jsonTourData = createJSON();
+    }
+
+    private Map<String,HashMap> createToursForJSON() {
+        HashMap<String,HashMap> hashTours = new HashMap<>();
+        HashMap<String,String> walkingTour = new HashMap<>();
+        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
+
+        for (int i = 0; i < tours.size(); i++) {
+            walkingTour.put("price",Integer.toString(tours.get(i).getPrice()));
+            walkingTour.put("tourname",tours.get(i).getTourname());
+            walkingTour.put("description",tours.get(i).getDescription());
+            //walkingTour.add(tours.get(i).getLocations().toString());
+            HashMap<String,String> newArrayList = (HashMap<String, String>) walkingTour.clone();
+            hashTours.put("walkingtour" + Integer.toString(i),newArrayList);
+            walkingTour.clear();
+        }
+        return hashTours;
+    }
+
+    private String createJSON(){
+        return new Gson().toJson(createToursForJSON());
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        HashMap<String,HashMap> Hashtours = new HashMap<>();
-        HashMap<String,String> walkingtour = new HashMap<>();
-        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
+//        HashMap<String,HashMap> Hashtours = new HashMap<>();
+//        HashMap<String,String> walkingtour = new HashMap<>();
+//        List<WalkingTour> tours = JPA.getEntityManager().createNamedQuery("displayalltour").getResultList();
+//
+//        for (int i = 0; i < tours.size(); i++) {
+//            walkingtour.put("price",Integer.toString(tours.get(i).getPrice()));
+//            walkingtour.put("tourname",tours.get(i).getTourname());
+//            walkingtour.put("description",tours.get(i).getDescription());
+//            //walkingtour.add(tours.get(i).getLocations().toString());
+//            HashMap<String,String> newArrayList = (HashMap<String, String>) walkingtour.clone();
+//            Hashtours.put("walkingtour" + Integer.toString(i),newArrayList);
+//            walkingtour.clear();
+//        }
 
-        for (int i = 0; i < tours.size(); i++) {
-            walkingtour.put("price",Integer.toString(tours.get(i).getPrice()));
-            walkingtour.put("tourname",tours.get(i).getTourname());
-            walkingtour.put("description",tours.get(i).getDescription());
-            //walkingtour.add(tours.get(i).getLocations().toString());
-            HashMap<String,String> newArrayList = (HashMap<String, String>) walkingtour.clone();
-            Hashtours.put("walkingtour" + Integer.toString(i),newArrayList);
-            walkingtour.clear();
-        }
-
-        String jsonTourData = new Gson().toJson(Hashtours);
-
-
+//        String jsonTourData = new Gson().toJson(Hashtours);
 
         response.setContentType("application/json");
         response.getWriter().print(jsonTourData);
-        PrintWriter out = response.getWriter();
-        out.print(jsonTourData);
+//        PrintWriter out = response.getWriter();
+//        out.print(jsonTourData);
     }
 
     @Override
