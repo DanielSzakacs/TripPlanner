@@ -4,11 +4,15 @@ import com.codecool.tripplanner.config.TemplateEngineUtil;
 import com.codecool.tripplanner.moduls.WalkingTour;
 import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
 import com.google.gson.Gson;
+import org.json.JSONException;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 
 import javax.json.Json;
+import org.json.JSONObject;
+
+import javax.json.JsonObject;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,7 +71,17 @@ public class TestiPage extends HttpServlet {
         }
         System.out.println(json);
 
-        String data = new Gson().fromJson(json, String.class);
+
+        JSONObject data = null;
+        try {
+            data = new JSONObject(json);
+            System.out.println(data);
+            String c = data.getJSONObject("data").getString("city");
+            System.out.println(c);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
 
         TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
