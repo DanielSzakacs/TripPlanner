@@ -10,6 +10,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MainPageComponent implements OnInit {
   result;
+  name = 'Name';
 
   constructor(private http: HttpClient) {
   }
