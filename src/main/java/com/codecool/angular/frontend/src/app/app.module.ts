@@ -4,6 +4,8 @@ import {FormsModule} from "@angular/forms";
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

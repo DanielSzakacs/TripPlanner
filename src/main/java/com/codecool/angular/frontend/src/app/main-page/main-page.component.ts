@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -8,13 +9,13 @@ import {HttpClient} from "@angular/common/http";
     './static/css/responsive/responsive.css', './main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  result = [];
+  result;
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    this.getAll();
+    this.getAllOffers();
   }
 
   search(data) {
@@ -22,8 +23,7 @@ export class MainPageComponent implements OnInit {
     ).subscribe(
       res => {
         console.log('Passing the json is done');
-        this.result.pop();
-        this.result.push(res);
+        this.result = res;
         console.log(this.result);
       },
       err => {
@@ -32,9 +32,12 @@ export class MainPageComponent implements OnInit {
     );
   }
 
-  getAll(){
-    this.http.get('http://localhost:8088/data').subscribe((data) => this.result.push(data), error1 => {console.log(error1)});
+  getAllOffers(){
+    this.http.get('http://localhost:8088/data').subscribe((data) => this.result = data, error1 => {console.log(error1)});
     console.log(this.result);
   }
+
+
+
 
 }

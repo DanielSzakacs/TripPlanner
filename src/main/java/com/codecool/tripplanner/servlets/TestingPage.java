@@ -59,12 +59,10 @@ public class TestingPage extends HttpServlet {
         }
         jsonArray.put(jsonObject);
         response.setContentType("application/json");
-        try {
-            response.getWriter().print(createJSON(JPA.getEntityManager().createNamedQuery("displayalltour").getResultList()));
-            response.getWriter().print(jsonArray);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+            //response.getWriter().print(createJSON(JPA.getEntityManager().createNamedQuery("displayalltour").getResultList()));
+        response.getWriter().print(jsonArray);
+
 //        PrintWriter out = response.getWriter();
 //        out.print(jsonTourData);
     }
