@@ -11,14 +11,15 @@
 }
 /*Border shadow*/
 .card-border{
-  -webkit-box-shadow: 3px 3px 15px -2px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 3px 15px -2px rgba(0,0,0,0.75);
-  box-shadow: 3px 3px 15px -2px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
   width: 30em;
   height: 19em;
   float: right;
   margin-right: 3em;
   margin-top: 1em;
+  background-color: white;
 }
 
 .offer-img{
@@ -37,3 +38,5 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
+
+
