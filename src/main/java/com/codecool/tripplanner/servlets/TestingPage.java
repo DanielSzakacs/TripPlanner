@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,44 +25,29 @@ import java.util.Map;
 public class TestingPage extends HttpServlet {
 
 
-    private Map<String,HashMap> createHashMap(List<WalkingTour> walkingTours) throws JSONException {
-        HashMap<String,HashMap> hashTours = new HashMap<>();
-        HashMap<String,String> walkingTour = new HashMap<>();
+    private JSONArray createHashMap(List<WalkingTour> walkingTours) throws JSONException {
+
         List<WalkingTour> tours = walkingTours;
+        JSONArray jsonArray = new JSONArray();
 
         for (int i = 0; i < tours.size(); i++) {
-            walkingTour.put("price",Integer.toString(tours.get(i).getPrice()));
-            walkingTour.put("tourname",tours.get(i).getTourname());
-            walkingTour.put("description",tours.get(i).getDescription());
-            //walkingTour.add(tours.get(i).getLocations().toString());
-            HashMap<String,String> newArrayList = (HashMap<String, String>) walkingTour.clone();
-            hashTours.put("walkingtour" + Integer.toString(i),newArrayList);
-            walkingTour.clear();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("price",Integer.toString(tours.get(i).getPrice()));
+            jsonObject.put("tourname",tours.get(i).getTourname());
+            jsonObject.put("description",tours.get(i).getDescription());
+            jsonArray.put(jsonObject);
+
         }
-        return hashTours;
+        return jsonArray;
     }
 
-    private String createJSON(List<WalkingTour> walkingTours) throws JSONException {
-        return new Gson().toJson(createHashMap(walkingTours));
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-
-
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("name","david");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        jsonArray.put(jsonObject);
         response.setContentType("application/json");
         try {
-            response.getWriter().print(createJSON(JPA.getEntityManager().createNamedQuery("displayalltour").getResultList()));
-            response.getWriter().print(jsonArray);
+            response.getWriter().print(createHashMap(JPA.getEntityManager().createNamedQuery("displayalltour").getResultList()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -102,7 +88,7 @@ public class TestingPage extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         try {
-            out.print(createJSON(nqh.getAllWalkingTour(city,genre)));
+            out.print(createHashMap(nqh.getAllWalkingTour(city,genre)));
         } catch (JSONException e) {
             e.printStackTrace();
         }
