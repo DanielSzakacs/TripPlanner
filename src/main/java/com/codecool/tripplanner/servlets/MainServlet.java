@@ -1,7 +1,7 @@
 package com.codecool.tripplanner.servlets;
 import com.codecool.tripplanner.JPA;
 import com.codecool.tripplanner.module.WalkingTour;
-import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
+import com.codecool.tripplanner.DAO.NamedQueryHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(name = "TestingPage", urlPatterns = {"/data"}) // strange name call it tours of something
+@WebServlet(name = "MainServlet", urlPatterns = {"/data"}) // strange name call it tours of something
 @MultipartConfig
-public class TestingPage extends HttpServlet {
+public class MainServlet extends HttpServlet {
 
 
     private JSONArray createHashMap(List<WalkingTour> walkingTours) throws JSONException {
