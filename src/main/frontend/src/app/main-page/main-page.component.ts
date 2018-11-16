@@ -1,5 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {MatDialog} from "@angular/material";
+import {OfferDialogComponent} from "./offer-dialog/offer-dialog.component";
 
 @Component({
   selector: 'app-main-page',
@@ -10,7 +12,8 @@ import {HttpClient} from "@angular/common/http";
 export class MainPageComponent implements OnInit {
   result;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -34,6 +37,12 @@ export class MainPageComponent implements OnInit {
   getAllOffers(){
     this.http.get('http://localhost:8088/data').subscribe((data) => this.result = data, error1 => {console.log(error1)});
     console.log(this.result);
+  }
+
+  openDialog(){
+    let dialogRef = this.dialog.open(OfferDialogComponent, {
+      width: '250px'
+    });
   }
 
 }

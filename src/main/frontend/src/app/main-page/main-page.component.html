@@ -116,7 +116,7 @@
     </div>
 
     <ng-container *ngFor="let offer of result">
-      <div class="card-border">
+      <div class="card-border" (click)="openDialog()">
         <p class="offer-description">
         <img class="offer-img" src="./assets/img/bg-img/feature-filmreel.jpg" />
           {{offer.tourname}}

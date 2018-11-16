@@ -21,6 +21,7 @@ import { OfferDialogComponent } from './main-page/offer-dialog/offer-dialog.comp
     HttpClientModule,
     MatDialogModule
   ],
+  entryComponents:[OfferDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
