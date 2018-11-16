@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebListener;
  * Store and retrieves Thymeleaf TemplateEngine into the application servlet context.
  */
 @WebListener
-public class TemplateEngineUtil {
+public class TemplateEngineUtil { // TODO remove
 
     private static final String TEMPLATE_ENGINE_ATTR = "com.thymeleafexamples.thymeleaf3.TemplateEngineInstance";
 

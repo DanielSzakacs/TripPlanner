@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@WebServlet(name = "TestingPage", urlPatterns = {"/data"})
+@WebServlet(name = "TestingPage", urlPatterns = {"/data"}) // strange name call it tours of something
 @MultipartConfig
 public class TestingPage extends HttpServlet {
 

@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <!--From this part for Servlet-->
+    <!--Keep this up to date! -->
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
