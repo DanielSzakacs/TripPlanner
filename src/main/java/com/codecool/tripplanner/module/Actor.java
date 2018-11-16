@@ -1,4 +1,4 @@
-package com.codecool.tripplanner.moduls; // call it model
+package com.codecool.tripplanner.module; // call it model
 
 import javax.persistence.*;
 import java.util.ArrayList;

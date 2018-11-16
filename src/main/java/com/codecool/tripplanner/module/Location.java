@@ -1,4 +1,4 @@
-package com.codecool.tripplanner.moduls;
+package com.codecool.tripplanner.module;
 
 import com.codecool.tripplanner.enums.CityName;
 

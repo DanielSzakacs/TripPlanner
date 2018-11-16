@@ -1,8 +1,7 @@
-package com.codecool.tripplanner.moduls;
+package com.codecool.tripplanner.module;
 
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.ArrayList;

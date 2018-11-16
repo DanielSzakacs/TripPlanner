@@ -2,16 +2,12 @@ package com.codecool.tripplanner;
 
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
-import com.codecool.tripplanner.moduls.*;
+import com.codecool.tripplanner.module.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.*;
 
 public class JPA {
 

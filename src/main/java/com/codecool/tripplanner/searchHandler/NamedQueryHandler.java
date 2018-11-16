@@ -3,7 +3,7 @@ package com.codecool.tripplanner.searchHandler;
 import com.codecool.tripplanner.JPA;
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
-import com.codecool.tripplanner.moduls.WalkingTour;
+import com.codecool.tripplanner.module.WalkingTour;
 
 import java.util.List;
 

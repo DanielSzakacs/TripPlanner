@@ -1,7 +1,6 @@
-package com.codecool.tripplanner.moduls;
+package com.codecool.tripplanner.module;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

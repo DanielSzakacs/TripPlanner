@@ -1,8 +1,7 @@
 package com.codecool.tripplanner.servlets;
 import com.codecool.tripplanner.JPA;
-import com.codecool.tripplanner.moduls.WalkingTour;
+import com.codecool.tripplanner.module.WalkingTour;
 import com.codecool.tripplanner.searchHandler.NamedQueryHandler;
-import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -14,10 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 
 @WebServlet(name = "TestingPage", urlPatterns = {"/data"}) // strange name call it tours of something
