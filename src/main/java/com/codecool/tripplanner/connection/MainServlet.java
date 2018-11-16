@@ -1,5 +1,5 @@
-package com.codecool.tripplanner.servlets;
-import com.codecool.tripplanner.JPA;
+package com.codecool.tripplanner.connection;
+import com.codecool.tripplanner.DAO.JPA;
 import com.codecool.tripplanner.module.WalkingTour;
 import com.codecool.tripplanner.DAO.NamedQueryHandler;
 import org.json.JSONArray;

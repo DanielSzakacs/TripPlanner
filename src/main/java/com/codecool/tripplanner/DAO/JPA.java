@@ -1,4 +1,4 @@
-package com.codecool.tripplanner;
+package com.codecool.tripplanner.DAO;
 
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
@@ -14,13 +14,6 @@ public class JPA {
     private static JPA jpa = null;
     private static EntityManager entityManager;
     private static EntityManagerFactory entityManagerFactory;
-
-    private static int numOfMovies = 1;
-    private static int numOfActors = 1;
-    private static int numOfTours = 1;
-    private static int numOfLocations = 1;
-    private static int numOfTimeslots = 1;
-    private static int numOfUsers = 1;
 
     private JPA() {
         entityManagerFactory = Persistence.createEntityManagerFactory("jpaexamplePU");
@@ -138,14 +131,4 @@ public class JPA {
         EntityManager em = entityManager;
         populateDb(em);
     }
-
-//    public static void main(String[] args) {
-//        getInstance();
-//        EntityManager em = entityManager;
-//        populateDb(em);
-//
-//        em.clear();
-//        em.close();
-//        entityManagerFactory.close();
-//    }
 }

@@ -1,6 +1,5 @@
 package com.codecool.tripplanner.DAO;
 
-import com.codecool.tripplanner.JPA;
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
 import com.codecool.tripplanner.module.WalkingTour;
