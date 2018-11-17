@@ -20,7 +20,6 @@ import java.util.List;
 @MultipartConfig
 public class MainServlet extends HttpServlet {
 
-
     private JSONArray createHashMap(List<WalkingTour> walkingTours) throws JSONException {
 
         List<WalkingTour> tours = walkingTours;
@@ -32,7 +31,6 @@ public class MainServlet extends HttpServlet {
             jsonObject.put("tourname",tours.get(i).getTourname());
             jsonObject.put("description",tours.get(i).getDescription());
             jsonArray.put(jsonObject);
-
         }
         return jsonArray;
     }

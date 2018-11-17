@@ -1,7 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material";
 import {OfferDialogComponent} from "./offer-dialog/offer-dialog.component";
+import {SingInComponent} from "./sing-in/sing-in.component";
 
 @Component({
     selector: 'app-main-page',
@@ -41,10 +42,15 @@ export class MainPageComponent implements OnInit {
         console.log(this.result);
     }
 
-    openDialog() {
-        let dialogRef = this.dialog.open(OfferDialogComponent, {
+    openOfferDialog() {
+        this.dialog.open(OfferDialogComponent, {
             width: '300px'
         });
     }
 
+    openSingInDialog() {
+      this.dialog.open(SingInComponent, {
+        width: '450px'
+      })
+    }
 }

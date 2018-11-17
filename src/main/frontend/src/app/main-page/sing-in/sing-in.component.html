@@ -1,3 +1,25 @@
-<p>
-  sing-in works!
-</p>
+<mat-dialog-content>
+  Sing in
+</mat-dialog-content>
+<mat-dialog-actions>
+  <form #userSingInData="ngForm" (submit)="sendUserSingInData(userSingInData.value)" >
+    <input type="email" placeholder="Email" name="email" ngModel><br>
+    <input type="password" placeholder="Password" name="password" ngModel><br>
+    <button type="submit" class="btn btn-info">Sing in</button>
+    <br>
+  </form>
+</mat-dialog-actions>
+<br>
+<hr>
+<br>
+<mat-dialog-content>
+  Or Sing up
+</mat-dialog-content>
+<mat-dialog-actions>
+  <form #userSingUpData="ngForm" (submit)="sendUserSingUpData(userSingUpData.value)" >
+    <input type="email" placeholder="Email" name="email" ngModel><br>
+    <input type="password" placeholder="Password" name="password1" ngModel><br>
+    <input type="password" placeholder="Password" name="password2" ngModel><br>
+    <button class="btn btn-info" type="submit">Sing up</button>
+  </form>
+</mat-dialog-actions>

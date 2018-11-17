@@ -23,7 +23,7 @@ import { SingInComponent } from './main-page/sing-in/sing-in.component';
     HttpClientModule,
     MatDialogModule
   ],
-  entryComponents:[OfferDialogComponent],
+  entryComponents:[OfferDialogComponent, SingInComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

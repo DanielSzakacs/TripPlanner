@@ -14,7 +14,7 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
                   aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span></button>
-          <button class="singInButton btn btn-info">Sing in</button>
+          <button class="singInButton btn btn-info" mat-raised-button (click)="openSingInDialog()">Sing in</button>
         </nav>
       </div>
     </div>
@@ -115,7 +115,7 @@
     </div>
 
     <ng-container *ngFor="let offer of result">
-      <div class="card-border" (click)="openDialog()">
+      <div class="card-border" (click)="openOfferDialog()">
         <p class="offer-description">
         <img class="offer-img" src="./assets/img/bg-img/feature-filmreel.jpg" />
           {{offer.tourname}}
