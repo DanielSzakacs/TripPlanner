@@ -6,12 +6,12 @@
 
     <persistence-unit name="jpaexamplePU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.codecool.tripplanner.moduls.TripUser</class>
-        <class>com.codecool.tripplanner.moduls.Actor</class>
-        <class>com.codecool.tripplanner.moduls.Location</class>
-        <class>com.codecool.tripplanner.moduls.Movie</class>
-        <class>com.codecool.tripplanner.moduls.Timeslot</class>
-        <class>com.codecool.tripplanner.moduls.WalkingTour</class>
+        <class>com.codecool.tripplanner.module.TripUser</class>
+        <class>com.codecool.tripplanner.module.Actor</class>
+        <class>com.codecool.tripplanner.module.Location</class>
+        <class>com.codecool.tripplanner.module.Movie</class>
+        <class>com.codecool.tripplanner.module.Timeslot</class>
+        <class>com.codecool.tripplanner.module.WalkingTour</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
             <property name="hibernate.hbm2dll.auto" value="create-drop"/> <!-- Ide irhatok update-t is -->
@@ -25,8 +25,8 @@
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/tripplanner"/>
-            <property name="javax.persistence.jdbc.user" value="zsolti"/>
-            <property name="javax.persistence.jdbc.password" value="ZanzaUF0"/>
+            <property name="javax.persistence.jdbc.user" value="danielszakacs"/>
+            <property name="javax.persistence.jdbc.password" value="montana00"/>
             <!--<property name="javax.persistence.sql-load-script-source" value="insert.sql"/>-->
         </properties>
     </persistence-unit>
