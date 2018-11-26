@@ -20,4 +20,14 @@ public class NamedQueryHandler {
         return result;
     }
 
+//    public void singUpUserData(String email, String password){
+//        JPA.getEntityManager().createNamedQuery("singUpUser").setParameter("email", email).setParameter("password", password);
+//    }
+
+    public void saveUserData(String email, String password) {
+        JPA.getEntityManager().createNativeQuery("INSERT INTO tripuser (username, password) " +
+                "       VALUES(?, ?)")
+                .setParameter(1, email)
+                .setParameter(2, password);
+    }
 }

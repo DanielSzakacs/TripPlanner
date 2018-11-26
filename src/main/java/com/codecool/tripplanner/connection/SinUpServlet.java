@@ -1,5 +1,6 @@
 package com.codecool.tripplanner.connection;
 
+import com.codecool.tripplanner.DAO.NamedQueryHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,15 +19,18 @@ public class SinUpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        NamedQueryHandler nqh = new NamedQueryHandler();
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = (br != null) ? br.readLine() : null;
+        JSONObject userData = null;
         try {
-            JSONObject userData = new JSONObject(json);
-
+            userData = new JSONObject(json);
+            System.out.println(userData);
+            nqh.saveUserData(userData.getString("email"), userData.getString("password1") );
         } catch (JSONException e) {
             e.printStackTrace();
+            System.out.println("THIS IS A BIG PROBLEM");
         }
-
 
     }
 }

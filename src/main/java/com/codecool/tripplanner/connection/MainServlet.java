@@ -45,8 +45,6 @@ public class MainServlet extends HttpServlet {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        PrintWriter out = response.getWriter();
-//        out.print(jsonTourData);
     }
 
     @Override
@@ -57,9 +55,6 @@ public class MainServlet extends HttpServlet {
         if(br != null){
             json = br.readLine();
         }
-//        System.out.println(json);
-
-
         String city = "";
         String genre = "";
 
@@ -71,12 +66,7 @@ public class MainServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-//        TemplateEngine engine = TemplateEngineUtil. getTemplateEngine(request.getServletContext());
-//        WebContext context = new WebContext(request, response, request.getServletContext());
         NamedQueryHandler nqh  = new NamedQueryHandler();
-
-        //context.setVariable("tours", nqh.getAllWalkingTour(city,genre));
-        //engine.process("agency/index.html", context, response.getWriter());
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
@@ -85,6 +75,5 @@ public class MainServlet extends HttpServlet {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 }

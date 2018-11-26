@@ -7,7 +7,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from "@angular/material";
 import { OfferDialogComponent } from './main-page/offer-dialog/offer-dialog.component';
-import { SingInComponent } from './main-page/sing-in/sing-in.component';
+import { SingInComponent } from './main-page/sing-in-up/sing-in.component';
 
 @NgModule({
   declarations: [

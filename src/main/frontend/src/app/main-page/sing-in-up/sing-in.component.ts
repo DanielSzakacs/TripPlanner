@@ -17,7 +17,7 @@ export class SingInComponent implements OnInit {
 
   sendUserSingInData(data){
     console.log(data);
-    this.http.post('http://localhost:8088/sign_in', data).subscribe(succsees => {
+    this.http.post('http://localhost:8088/sign_in', data).subscribe(result => {
       this.closeDialog()
     },
       error => {
@@ -28,8 +28,9 @@ export class SingInComponent implements OnInit {
 
   sendUserSingUpData(data){
     console.log(data);
-    this.http.post('http://localhost:8088/sign_up', data).subscribe(succsees => {
-        this.closeDialog()
+    this.http.post('http://localhost:8088/sing_up', data).subscribe(result => {
+        this.closeDialog();
+        console.log(result);
       },
       error => {
         if(error.status == 404)

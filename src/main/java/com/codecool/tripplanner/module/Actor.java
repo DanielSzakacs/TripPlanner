@@ -3,8 +3,9 @@ package com.codecool.tripplanner.module; // call it model
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
-@NamedQuery(name = "getallactors",query = "select a from Actor a")
+@NamedQuery(name = "getallactors", query = "select a from Actor a")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +17,7 @@ public class Actor {
     @ManyToMany(mappedBy = "actors")
     private List<Movie> movieList = new ArrayList<>();
 
-    public Actor(){
+    public Actor() {
     }
 
     public Actor(String name, List<Movie> movieList) {
@@ -28,11 +29,11 @@ public class Actor {
         this.name = name;
     }
 
-    public void setMovieList(List<Movie> movies){
+    public void setMovieList(List<Movie> movies) {
         this.movieList = movies;
     }
 
-    public void addMovieToList(Movie movie){
+    public void addMovieToList(Movie movie) {
         this.movieList.add(movie);
     }
 }

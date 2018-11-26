@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+//@NamedQuery(name = "singUpUser", query = "insert into TripUser (name, password) values (email = :email, password = :password)")
 public class TripUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,20 +14,20 @@ public class TripUser {
     @ManyToMany
     private List<Timeslot> timeslotList = new ArrayList<>();
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
 
     public TripUser(List<Timeslot> timeslotList, String name, String password) {
         this.timeslotList = timeslotList;
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 
     public TripUser(String name, String password) {
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 

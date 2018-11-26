@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material";
 import {OfferDialogComponent} from "./offer-dialog/offer-dialog.component";
-import {SingInComponent} from "./sing-in/sing-in.component";
+import {SingInComponent} from "./sing-in-up/sing-in.component";
 
 @Component({
     selector: 'app-main-page',
