@@ -64,7 +64,7 @@ export class MainPageComponent implements OnInit {
     }
 
     // This is for distinguish users who are logged in and who are not.
-    checkIfUserLoggedIn() { // TODO
+    checkIfUserLoggedIn() {
       this.http.get('http://localhost:8080/login').subscribe(response => {
         this.userLoggedIn = true;
         alert('Success');
