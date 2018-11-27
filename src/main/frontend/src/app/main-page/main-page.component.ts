@@ -12,6 +12,7 @@ import {SingInComponent} from "./sing-in-up/sing-in.component";
 
 export class MainPageComponent implements OnInit {
     result;
+    userLoggedIn: boolean = true;
 
     constructor(private http: HttpClient,
                 private dialog: MatDialog) {
@@ -52,5 +53,9 @@ export class MainPageComponent implements OnInit {
       this.dialog.open(SingInComponent, {
         width: '450px'
       })
+    }
+
+    checkIfUserLoggedIn() {
+      this.http.get('http://localhost:8080/data')
     }
 }

@@ -10,37 +10,35 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 export class SingInComponent implements OnInit {
 
   constructor(private http: HttpClient,
-              private dialogRef: MatDialogRef<SingInComponent>) { }
+              private dialogRef: MatDialogRef<SingInComponent>) {
+  }
 
   ngOnInit() {
   }
 
-  sendUserSingInData(data){
+  sendUserSingInData(data) {
     console.log(data);
     this.http.post('http://localhost:8088/sign_in', data).subscribe(result => {
-      this.closeDialog()
-    },
+        this.closeDialog();
+      },
       error => {
-      if(error.status == 404)
-        alert('Error. Please try is later');
+        if (error.status == 404)
+          alert('Error. Please try is later');
       });
   }
 
-  sendUserSingUpData(data){
+  sendUserSingUpData(data) {
     console.log(data);
     this.http.post('http://localhost:8088/sing_up', data).subscribe(result => {
         this.closeDialog();
         console.log(result);
       },
       error => {
-        if(error.status == 404)
+        if (error.status == 404)
           alert('Error. Please try later');
       });
   }
 
-  closeDialog(){
-    this.dialogRef.close();
-  }
-
-
 }
+
+
