@@ -12,12 +12,11 @@ import {SingInComponent} from "./sing-in-up/sing-in.component";
 
 export class MainPageComponent implements OnInit {
     result;
-    userLoggedIn: boolean = true;
+    userLoggedIn: boolean = false;
 
 
     constructor(private http: HttpClient, private dialog: MatDialog){
     }
-
 
     ngOnInit() {
         this.getAllOffers();
@@ -45,9 +44,13 @@ export class MainPageComponent implements OnInit {
     }
 
     openOfferDialog() {
+      if(this.userLoggedIn){
         this.dialog.open(OfferDialogComponent, {
             width: '300px'
         });
+      }else{
+        alert('Please first Login or LogUp');
+      }
     }
 
     openSingInDialog() {
