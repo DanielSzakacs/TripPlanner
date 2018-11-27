@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit {
     }
 
     search(data) {
-        this.http.post('http://localhost:8088/data', {data}
+        this.http.post('http://localhost:8080/data', {data}
         ).subscribe(
             res => {
                 console.log('Passing the json is done');
@@ -36,7 +36,7 @@ export class MainPageComponent implements OnInit {
     }
 
     getAllOffers() {
-        this.http.get('http://localhost:8088/data').subscribe((data) => this.result = data, error1 => {
+        this.http.get('http://localhost:8080/data').subscribe((data) => this.result = data, error1 => {
             console.log(error1)
         });
         console.log(this.result);
