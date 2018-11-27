@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 public interface TripUserRepo extends JpaRepository<TripUser, Long> {
 
     @Transactional
-    TripUser findtripUserByEmail(String email);
+    TripUser findTripUserByUsername(String email);
 }

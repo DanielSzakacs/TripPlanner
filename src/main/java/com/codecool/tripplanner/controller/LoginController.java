@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
-@RestController
 @CrossOrigin
+@RestController
 public class LoginController {
 
     private TripUserRepo tripUserRepo;
@@ -42,11 +42,12 @@ public class LoginController {
         Map<String, String> loginData = gson.fromJson(request.getReader() , type);
 
         String email = loginData.get("email");
+        System.out.println("email: " + email);
         String password = loginData.get("password");
 
         //Get the user from DB
         HttpStatus resultMessage;
-        TripUser user = tripUserRepo.findtripUserByEmail(email);
+        TripUser user = tripUserRepo.findTripUserByUsername(email);
         if(user == null){
             resultMessage = HttpStatus.valueOf(401); //401 means = Unauthorized
             System.out.println(resultMessage);
@@ -55,6 +56,7 @@ public class LoginController {
 
         if(user != null){
             resultMessage = HttpStatus.valueOf(200);
+            return resultMessage;
         }
 
         //Need verify user, waiting for the registration

@@ -17,12 +17,12 @@ export class SingInComponent implements OnInit {
 
   sendUserSingInData(data){
     console.log(data);
-    this.http.post('http://localhost:8088/sign_in', data).subscribe(result => {
-      this.closeDialog()
+    this.http.post('http://localhost:8080/login', data).subscribe(result => {
+      this.closeDialog();
+      console.log(result);
     },
       error => {
-      if(error.status == 404)
-        alert('Error. Please try is later');
+        alert('User is not exist!');
       });
   }
 
@@ -33,8 +33,8 @@ export class SingInComponent implements OnInit {
         console.log(result);
       },
       error => {
-        if(error.status == 404)
-          alert('Error. Please try later');
+        if(error.status == 401)
+          alert('User is not exist!');
       });
   }
 
