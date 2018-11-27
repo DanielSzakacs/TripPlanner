@@ -34,7 +34,7 @@ export class SingInComponent implements OnInit {
       },
       error => {
         if(error.status == 404)
-          alert('Error. Please try is later');
+          alert('Error. Please try later');
       });
   }
 
