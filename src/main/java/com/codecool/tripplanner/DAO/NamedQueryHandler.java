@@ -1,4 +1,4 @@
-package com.codecool.tripplanner.DAO;
+/*package com.codecool.tripplanner.DAO;
 
 import com.codecool.tripplanner.enums.CityName;
 import com.codecool.tripplanner.enums.Genre;
@@ -30,4 +30,4 @@ public class NamedQueryHandler {
                 .setParameter(1, email)
                 .setParameter(2, password);
     }
-}
+}*/

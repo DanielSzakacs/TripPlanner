@@ -1,4 +1,4 @@
-package com.codecool.tripplanner.connection;
+/*package com.codecool.tripplanner.controller;
 import com.codecool.tripplanner.DAO.JPA;
 import com.codecool.tripplanner.module.WalkingTour;
 import com.codecool.tripplanner.DAO.NamedQueryHandler;
