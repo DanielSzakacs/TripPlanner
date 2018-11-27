@@ -1,0 +1,147 @@
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="dorne-load"></div>
+</div>
+
+<!-- ***** Header Area Start ***** -->
+<header class="header_area" id="header">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="col-12 h-100">
+        <nav class="h-100 navbar navbar-expand-lg">
+          <a class="navbar-brand" href="templates/agency/index.html"><img src="./assets/img/core-img/logo.png"/></a> <!-- TODO src-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
+                  aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span></button>
+          <button class="singInButton btn btn-info" mat-raised-button (click)="openSingInDialog()">Sing in</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+<!-- ***** Welcome Area Start ***** -->
+<section class="dorne-welcome-area bg-img bg-overlay" style="height: 50%; width: 100%; object-fit:contain ; background-image: url(./assets/img/bg-img/hero-bp.jpg);">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center">
+      <div class="col-12 col-md-10">
+        <div class="hero-content">
+          <h4>Discover interesting movie sights in Hungary</h4>
+        </div>
+        <!-- Hero Search Form -->
+        <div class="hero-search-form">
+          <!-- Tabs -->
+          <div class="nav nav-tabs" id="heroTab" role="tablist">
+            <button class="offers-btn " (click)="getAllOffers()">Offers</button>
+          </div>
+          <!-- Tabs Content -->
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-places" role="tabpanel"
+                 aria-labelledby="nav-places-tab">
+              <form #searchingField = "ngForm" (submit)="search(searchingField.value)">
+
+                <select id="city" class="custom-select" name="city" ngModel>
+                  <option>Your Destinations</option>
+                  <option value="BUDAPEST">Budapest</option>
+                  <option value="ETYEK">Etyek</option>
+                  <option value="TINNYE">Tinnye</option>
+                  <option value="KESZTHELY">Keszthely</option>
+                </select>
+
+                <select id="genre" class="custom-select" name="genre" ngModel>
+                  <option>Genres</option>
+                  <option value="ACTION">Action</option>
+                  <option value="COMEDY">Comedy</option>
+                  <option value="HORROR">Horror</option>
+                  <option value="ADVENTURE">Adventure</option>
+                </select>
+
+                <select id="price" class="custom-select" name="price">
+                  <option>Price Range</option>
+                  <option value="1">$0 - $499</option>
+                  <option value="2">$500 - $999</option>
+                  <option value="3">$1000 - $4999</option>
+                </select>
+                <button type="submit" class="btn dorne-btn">
+                  <i class="fa fa-search pr-2" aria-hidden="true"></i>Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero Social Btn -->
+  <div class="hero-social-btn">
+    <div class="social-btns">
+      <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+      <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+      <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+      <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+      <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+    </div>
+  </div>
+</section>
+<!-- ***** Welcome Area End ***** -->
+
+<!-- ***** About Area Start ***** -->
+<section class="dorne-about-area section-padding-0-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="about-content text-center">
+          <h2>Discover your city with <br><span>Whatever Film Agency</span></h2>
+          <p>We offer the most authentic and detailed tours about movie shooting sights.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ***** About Area End ***** -->
+
+<!-- ***** Features Destinations Area Start ***** -->
+<section class="dorne-features-destinations-area bg-default">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!--<div class="section-heading dark text-center">-->
+        <div class="section-heading text-center">
+          <span></span>
+          <h4>Offers</h4>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngFor="let offer of result">
+      <div class="card-border" (click)="openOfferDialog()">
+        <p class="offer-description">
+        <img class="offer-img" src="./assets/img/bg-img/feature-filmreel.jpg" />
+          {{offer.tourname}}
+          <br><br>
+        {{offer.description}}
+        </p>
+        Price: ${{offer.price}}
+      </div>
+    </ng-container>
+  </div>
+</section>
+<!-- ***** Features Destinations Area End ***** -->
+
+<!-- ****** Footer Area Start ****** -->
+<footer class="dorne-footer-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 d-md-flex align-items-center justify-content-between">
+        <div class="footer-social-btns">
+          <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+          <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+          <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+          <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
