@@ -39,6 +39,10 @@ export class SingInComponent implements OnInit {
       });
   }
 
+  closeDialog(){
+    this.dialogRef.close();
+  }
+
 }
 
 

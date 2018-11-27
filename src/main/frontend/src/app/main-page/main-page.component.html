@@ -3,7 +3,6 @@
 <div id="preloader">
   <div class="dorne-load"></div>
 </div>
-
 <!-- ***** Header Area Start ***** -->
 <header class="header_area" id="header">
   <div class="container-fluid h-100">
@@ -15,7 +14,7 @@
                   aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span></button>
           <!--TODO-->
-          <button *ngIf="userLoggedIn" class="singInButton btn btn-info" mat-raised-button (click)="openSingInDialog()">Sing in</button>
+          <button *ngIf="userLoggedIn == false" class="singInButton btn btn-info" mat-raised-button (click)="openSingInDialog()">Sing in</button>
         </nav>
       </div>
     </div>

@@ -14,9 +14,10 @@ export class MainPageComponent implements OnInit {
     result;
     userLoggedIn: boolean = true;
 
-    constructor(private http: HttpClient,
-                private dialog: MatDialog) {
+
+    constructor(private http: HttpClient, private dialog: MatDialog){
     }
+
 
     ngOnInit() {
         this.getAllOffers();
@@ -55,7 +56,14 @@ export class MainPageComponent implements OnInit {
       })
     }
 
-    checkIfUserLoggedIn() {
-      this.http.get('http://localhost:8080/data')
+    // This is for distinguish users who are logged in and who are not.
+    checkIfUserLoggedIn() { // TODO
+      this.http.get('http://localhost:8080/logged-in').subscribe(response => {
+        this.userLoggedIn = true;
+        alert('Success');
+      },
+        error => {
+        this.userLoggedIn = false;
+        })
     }
 }
