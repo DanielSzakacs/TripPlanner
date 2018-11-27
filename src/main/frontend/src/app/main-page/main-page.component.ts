@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material";
 import {OfferDialogComponent} from "./offer-dialog/offer-dialog.component";
 import {SingInComponent} from "./sing-in-up/sing-in.component";
+import {AlertsService} from "angular-alert-module";
 
 @Component({
     selector: 'app-main-page',
@@ -15,7 +16,8 @@ export class MainPageComponent implements OnInit {
     userLoggedIn: boolean;
 
 
-    constructor(private http: HttpClient, private dialog: MatDialog){
+    constructor(private http: HttpClient, private dialog: MatDialog,
+                private alerts: AlertsService){
     }
 
     ngOnInit() {
@@ -50,7 +52,8 @@ export class MainPageComponent implements OnInit {
             width: '300px'
         });
       }else{
-        alert('Please first Login or LogUp');
+        this.alerts.setMessage('Firt Login or Logup', 'error');
+        this.onActivate();
       }
     }
 
@@ -70,4 +73,16 @@ export class MainPageComponent implements OnInit {
         this.userLoggedIn = false;
         })
     }
+
+    onActivate() {
+      let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+          window.scrollTo(0, pos - 20); // how far to scroll on each step
+        } else {
+          window.clearInterval(scrollToTop);
+        }
+      }, 16);
+    }
+
 }

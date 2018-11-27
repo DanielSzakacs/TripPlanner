@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from "@angular/material";
 import { OfferDialogComponent } from './main-page/offer-dialog/offer-dialog.component';
 import { SingInComponent } from './main-page/sing-in-up/sing-in.component';
+import {AlertsModule} from "angular-alert-module";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SingInComponent } from './main-page/sing-in-up/sing-in.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    AlertsModule.forRoot()
   ],
   entryComponents:[OfferDialogComponent, SingInComponent],
   providers: [],

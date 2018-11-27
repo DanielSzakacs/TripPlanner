@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {AlertsService} from "angular-alert-module";
 
 @Component({
   selector: 'app-sing-in',
@@ -10,7 +11,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 export class SingInComponent implements OnInit {
 
   constructor(private http: HttpClient,
-              private dialogRef: MatDialogRef<SingInComponent>) {
+              private dialogRef: MatDialogRef<SingInComponent>,
+              private alerts: AlertsService) {
   }
 
   ngOnInit() {
@@ -45,10 +47,10 @@ export class SingInComponent implements OnInit {
 
   userLogIn() {
     this.http.get('http://localhost:8080/login').subscribe( respond => {
-      console.log('You logged in'); // TODO Ide egy felugro időzitette uzenet kell.
+      this.alerts.setMessage('You are successful logged in', 'success');
     }, error => {
       if(error.status == 401){
-        console.log('The email or the password is not correct');
+        alert('Your email or password is not correct');
       }
     });
   }
