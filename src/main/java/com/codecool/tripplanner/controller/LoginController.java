@@ -1,6 +1,8 @@
 package com.codecool.tripplanner.controller;
 
+import com.codecool.tripplanner.module.TripUser;
 import com.codecool.tripplanner.repository.TripUserRepo;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,8 +28,8 @@ public class LoginController {
         this.tripUserRepo = tripUserRepo;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(HttpServletRequest request) throws IOException{
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public HttpStatus login(HttpServletRequest request) throws IOException{
         HttpSession session = request.getSession();
 
         // Specifies the time, in seconds, between client requests
@@ -37,8 +39,25 @@ public class LoginController {
         //https://stackoverflow.com/questions/43117731/what-is-type-typetoken
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>() { }.getType();
-        Map<String, String> logindata = gson.fromJson(request.getReader() , type);
+        Map<String, String> loginData = gson.fromJson(request.getReader() , type);
 
+        String email = loginData.get("email");
+        String password = loginData.get("password");
+
+        //Get the user from DB
+        HttpStatus resultMessage;
+        TripUser user = tripUserRepo.findtripUserByEmail(email);
+        if(user == null){
+            resultMessage = HttpStatus.valueOf(401); //401 means = Unauthorized
+            System.out.println(resultMessage);
+            return resultMessage;
+        }
+
+        if(user != null){
+            resultMessage = HttpStatus.valueOf(200);
+        }
+
+        //Need verify user, waiting for the registration
 
 
 
