@@ -12,7 +12,7 @@ import {SingInComponent} from "./sing-in-up/sing-in.component";
 
 export class MainPageComponent implements OnInit {
     result;
-    userLoggedIn: boolean = false;
+    userLoggedIn: boolean;
 
 
     constructor(private http: HttpClient, private dialog: MatDialog){
@@ -20,6 +20,7 @@ export class MainPageComponent implements OnInit {
 
     ngOnInit() {
         this.getAllOffers();
+        this.checkIfUserLoggedIn();
     }
 
     search(data) {
@@ -61,7 +62,7 @@ export class MainPageComponent implements OnInit {
 
     // This is for distinguish users who are logged in and who are not.
     checkIfUserLoggedIn() { // TODO
-      this.http.get('http://localhost:8080/logged-in').subscribe(response => {
+      this.http.get('http://localhost:8080/login').subscribe(response => {
         this.userLoggedIn = true;
         alert('Success');
       },

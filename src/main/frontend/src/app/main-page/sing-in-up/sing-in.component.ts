@@ -43,6 +43,16 @@ export class SingInComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  userLogIn() {
+    this.http.get('http://localhost:8080/login').subscribe( respond => {
+      console.log('You logged in'); // TODO Ide egy felugro időzitette uzenet kell.
+    }, error => {
+      if(error.status == 401){
+        console.log('The email or the password is not correct');
+      }
+    });
+  }
+
 }
 
 
