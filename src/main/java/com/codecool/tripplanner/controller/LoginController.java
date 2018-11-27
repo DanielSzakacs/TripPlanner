@@ -1,5 +1,6 @@
 package com.codecool.tripplanner.controller;
 
+import com.codecool.tripplanner.jbcrypt.BCrypt;
 import com.codecool.tripplanner.module.TripUser;
 import com.codecool.tripplanner.repository.TripUserRepo;
 import org.springframework.http.HttpStatus;
@@ -54,16 +55,14 @@ public class LoginController {
             return resultMessage;
         }
 
-        if(user != null){
-            resultMessage = HttpStatus.valueOf(200);
-            return resultMessage;
+        //Check the password
+        if(BCrypt.checkpw(password, user.getPassword())){
+            session.setAttribute("user",user);
+            resultMessage = HttpStatus.valueOf(200); // 200 means = OK
+        }else{
+            resultMessage = HttpStatus.valueOf(401);
         }
-
-        //Need verify user, waiting for the registration
-
-
-
-        return null;
+        return resultMessage;
     }
 
 
