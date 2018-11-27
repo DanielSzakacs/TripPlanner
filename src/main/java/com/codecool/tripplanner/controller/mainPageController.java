@@ -32,17 +32,21 @@ public class mainPageController {
         return walkingTourRepo.findAll();
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public List<WalkingTour> search(HttpServletRequest request) throws IOException {
-        System.out.println(request);
+        System.out.println("This is the request " + request);
+        System.out.println("THIS IIIIII " + request.getInputStream().toString());
 
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>() {
         }.getType();
+        System.out.println(type.toString());
         Map<String, String> searchdata = gson.fromJson(request.getReader(), type);
-
-        System.out.println(searchdata.get("cityname"));
+        System.out.println(searchdata.get("city"));
         System.out.println(searchdata.get("genre"));
+
+        System.out.println("CITYYY " + searchdata.get("city"));
+        System.out.println("GENREEEE " + searchdata.get("genre"));
         //CityName cityName = CityName.valueOf(city);
         //Genre genre1 = Genre.valueOf(genre);
         //return walkingTourRepo.findAllByCityNameAndMoviegenre(cityName,genre1);
