@@ -22,7 +22,9 @@ export class SingInComponent implements OnInit {
       console.log(result);
     },
       error => {
-        alert('User is not exist!');
+      if(error.status == 401){
+        alert('This email is not used');
+      }
       });
   }
 
