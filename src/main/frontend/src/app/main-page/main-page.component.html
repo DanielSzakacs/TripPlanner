@@ -3,7 +3,6 @@
 <div id="preloader">
   <div class="dorne-load"></div>
 </div>
-
 <!-- ***** Header Area Start ***** -->
 <header class="header_area" id="header">
   <div class="container-fluid h-100">
@@ -14,13 +13,15 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav"
                   aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span></button>
-          <button class="singInButton btn btn-info" mat-raised-button (click)="openSingInDialog()">Sing in</button>
+          <!--TODO-->
+          <button *ngIf="userLoggedIn == false" class="singInButton btn btn-info" mat-raised-button (click)="openSingInDialog()">Sing in</button>
         </nav>
       </div>
     </div>
   </div>
 </header>
 <!-- ***** Header Area End ***** -->
+<app-alerts></app-alerts>
 
 <!-- ***** Welcome Area Start ***** -->
 <section class="dorne-welcome-area bg-img bg-overlay" style="height: 50%; width: 100%; object-fit:contain ; background-image: url(./assets/img/bg-img/hero-bp.jpg);">

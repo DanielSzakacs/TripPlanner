@@ -11,7 +11,7 @@ import java.util.List;
     @NamedQuery(name = "displayalltour",query = "SELECT w from WalkingTour w"),
     @NamedQuery(name = "Walkingtour.getAllWalkingtour",
             query = "SELECT s FROM WalkingTour s WHERE " +
-            "(s.moviegenre = :walkingtourgenre OR :walkingtourgenre IS NULL OR :walkingtourgenre = '') AND " +
+            "(s.moviegenre = :walkingtourgenre OR :walkingtourgenre IS NULL OR :walkingtourgenre = '') OR " +
             "(s.cityName = :cityName OR :cityName IS NULL or :cityName = '')" )
 })
 public class WalkingTour {
