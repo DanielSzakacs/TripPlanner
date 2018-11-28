@@ -52,7 +52,6 @@ public class LoginController {
         TripUser user = tripUserRepo.findTripUserByUsername(email);
         if(user == null){
             response.setStatus(401);
-            return null;
         }
 
         //Check the password
