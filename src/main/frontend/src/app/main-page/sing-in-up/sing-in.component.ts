@@ -9,7 +9,7 @@ import {AlertsService} from "angular-alert-module";
   styleUrls: ['./sing-in.component.css']
 })
 export class SingInComponent implements OnInit {
-
+  statusCode: Object;
   constructor(private http: HttpClient,
               private dialogRef: MatDialogRef<SingInComponent>,
               private alerts: AlertsService) {
@@ -20,18 +20,20 @@ export class SingInComponent implements OnInit {
 
   sendUserSingInData(data) {
     console.log(data);
-    this.http.post('http://localhost:8088/sign_in', data).subscribe(result => {
-        this.closeDialog();
-      },
+    this.http.post('http://localhost:8080/login', data).subscribe(result => {
+      this.closeDialog();
+      console.log('Login is is OK ')
+    },
       error => {
-        if (error.status == 404)
-          alert('Error. Please try is later');
+        if(error.status == 401){
+          alert('Something wrong');
+        }
       });
   }
 
   sendUserSingUpData(data) {
     console.log(data);
-    this.http.post('http://localhost:8088/sing_up', data).subscribe(result => {
+    this.http.post('http://localhost:8080/registration', data).subscribe(result => {
         this.closeDialog();
         console.log(result);
       },
@@ -45,15 +47,6 @@ export class SingInComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  userLogIn() {
-    this.http.get('http://localhost:8080/login').subscribe( respond => {
-      this.alerts.setMessage('You are successful logged in', 'success');
-    }, error => {
-      if(error.status == 401){
-        alert('Your email or password is not correct');
-      }
-    });
-  }
 
 }
 
