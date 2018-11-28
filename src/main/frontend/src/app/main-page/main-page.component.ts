@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit {
     }
 
     search(data) {
-        this.http.post('http://localhost:8080/data', {data}
+        this.http.post('http://localhost:8080/search', data
         ).subscribe(
             res => {
                 console.log('Passing the json is done');
