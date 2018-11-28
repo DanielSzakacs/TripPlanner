@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class InitalizeDB {
 
-    public InitalizeDB(ActorRepo actorRepo, LocationaRepo locationaRepo, MovieRepo movieRepo, TimeslotRepo timeslotRepo, WalkingTourRepo walkingTourRepo){
+    public InitalizeDB(ActorRepo actorRepo, LocationaRepo locationaRepo, MovieRepo movieRepo, TimeslotRepo timeslotRepo, WalkingTourRepo walkingTourRepo, TripUserRepo tripUserRepo){
 
         Movie movie0 = new Movie("A Good Day to Die Hard", Genre.ACTION, CityName.BUDAPEST);
         Movie movie1 = new Movie("I Spy", Genre.COMEDY, CityName.BUDAPEST);
@@ -27,6 +27,9 @@ public class InitalizeDB {
         Actor actor7 = new Actor("Reviczky Gábor");
         Actor actor8 = new Actor("Nagy Ervin");
         Actor actor9 = new Actor("Petrik Andrea");
+
+        tripUserRepo.save(new TripUser("daniel", "dsa"));
+
 
         movieRepo.save(movie0);
         movieRepo.save(movie1);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public void register(HttpServletRequest request) throws IOException{
+    public void register(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         // Parse request
         Gson gson = new Gson();

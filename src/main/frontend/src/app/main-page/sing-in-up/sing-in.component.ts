@@ -8,7 +8,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
   styleUrls: ['./sing-in.component.css']
 })
 export class SingInComponent implements OnInit {
-
+  statusCode: Object;
   constructor(private http: HttpClient,
               private dialogRef: MatDialogRef<SingInComponent>) { }
 
@@ -19,18 +19,17 @@ export class SingInComponent implements OnInit {
     console.log(data);
     this.http.post('http://localhost:8080/login', data).subscribe(result => {
       this.closeDialog();
-      console.log(result);
     },
       error => {
-      if(error.status == 401){
-        alert('This email is not used');
-      }
+        if(error.status == 401){
+          alert('Something wrong');
+        }
       });
   }
 
   sendUserSingUpData(data){
     console.log(data);
-    this.http.post('http://localhost:8088/sing_up', data).subscribe(result => {
+    this.http.post('http://localhost:8080/registration', data).subscribe(result => {
         this.closeDialog();
         console.log(result);
       },

@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public HttpStatus login(HttpServletRequest request) throws IOException{
+    public HttpStatus login(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession();
 
         // Specifies the time, in seconds, between client requests
@@ -47,22 +48,27 @@ public class LoginController {
         String password = loginData.get("password");
 
         //Get the user from DB
-        HttpStatus resultMessage;
+        //HttpStatus resultMessage;
         TripUser user = tripUserRepo.findTripUserByUsername(email);
         if(user == null){
-            resultMessage = HttpStatus.valueOf(401); //401 means = Unauthorized
-            System.out.println(resultMessage);
-            return resultMessage;
+            response.setStatus(401);
+//            resultMessage = HttpStatus.valueOf(401); //401 means = Unauthorized
+//            System.out.println(resultMessage);
+            return null;
         }
 
         //Check the password
         if(BCrypt.checkpw(password, user.getPassword())){
             session.setAttribute("user",user);
-            resultMessage = HttpStatus.valueOf(200); // 200 means = OK
+            //resultMessage = HttpStatus.valueOf(200); // 200 means = OK
+            response.setStatus(200);
         }else{
-            resultMessage = HttpStatus.valueOf(401);
+            //resultMessage = HttpStatus.valueOf(401);
+            response.setStatus(402);
         }
-        return resultMessage;
+        System.out.println(response);
+        //return resultMessage;
+        return null;
     }
 
 
