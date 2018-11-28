@@ -17,6 +17,7 @@ import java.lang.reflect.Type;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.util.Map;
 
@@ -48,26 +49,20 @@ public class LoginController {
         String password = loginData.get("password");
 
         //Get the user from DB
-        //HttpStatus resultMessage;
         TripUser user = tripUserRepo.findTripUserByUsername(email);
         if(user == null){
             response.setStatus(401);
-//            resultMessage = HttpStatus.valueOf(401); //401 means = Unauthorized
-//            System.out.println(resultMessage);
             return null;
         }
 
         //Check the password
-        if(BCrypt.checkpw(password, user.getPassword())){
+
+        if(password.equals(new String(DatatypeConverter.parseBase64Binary(user.getPassword())))){
             session.setAttribute("user",user);
-            //resultMessage = HttpStatus.valueOf(200); // 200 means = OK
             response.setStatus(200);
         }else{
-            //resultMessage = HttpStatus.valueOf(401);
             response.setStatus(402);
         }
-        System.out.println(response);
-        //return resultMessage;
         return null;
     }
 

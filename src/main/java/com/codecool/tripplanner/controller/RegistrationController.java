@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -37,8 +38,9 @@ public class RegistrationController {
 
         // Create user
         String email = registrationData.get("email");
-        String password = registrationData.get("password");
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        String password = registrationData.get("password1");
+        String hashedPassword = DatatypeConverter.printBase64Binary(password.getBytes());
+        //String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         TripUser user = new TripUser(email, hashedPassword);
         tripUserRepo.save(user);

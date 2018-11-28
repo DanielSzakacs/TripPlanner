@@ -19,6 +19,7 @@ export class SingInComponent implements OnInit {
     console.log(data);
     this.http.post('http://localhost:8080/login', data).subscribe(result => {
       this.closeDialog();
+      console.log('Login is is OK ')
     },
       error => {
         if(error.status == 401){
