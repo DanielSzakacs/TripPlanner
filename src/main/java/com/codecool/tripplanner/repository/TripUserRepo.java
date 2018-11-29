@@ -10,4 +10,6 @@ public interface TripUserRepo extends JpaRepository<TripUser, Long> {
 
     TripUser findTripUserByUsername(String email);
 
+    TripUser findFirstById(String id);
+
 }
