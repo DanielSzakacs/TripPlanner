@@ -52,7 +52,7 @@ export class MainPageComponent implements OnInit {
             width: '300px'
         });
       }else{
-        this.alerts.setMessage('First Login or Logup', 'error');
+        this.alerts.setMessage('First Login or SignUp', 'error');
         this.onActivate();
       }
     }
@@ -82,6 +82,16 @@ export class MainPageComponent implements OnInit {
           window.clearInterval(scrollToTop);
         }
       }, 16);
+    }
+
+    logOut(){
+      this.http.get('http://localhost:8080/logout').subscribe( success => {
+        console.log('log our should work');
+      },
+        error1 => {
+        console.log('Log out not working');
+        });
+      this.checkIfUserLoggedIn();
     }
 
 }
