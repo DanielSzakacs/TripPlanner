@@ -68,6 +68,7 @@ public class LoginController {
         return resultMessage;
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public boolean checkUserInTheSession(){
         if(session.getAttribute("user") == null){
             return true;
