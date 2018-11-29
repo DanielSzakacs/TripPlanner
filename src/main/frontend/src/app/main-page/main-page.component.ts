@@ -13,7 +13,7 @@ import {AlertsService} from "angular-alert-module";
 
 export class MainPageComponent implements OnInit {
     result;
-    userLoggedIn: boolean;
+    userLoggedIn: boolean = false;
 
 
     constructor(private http: HttpClient, private dialog: MatDialog,
@@ -52,7 +52,7 @@ export class MainPageComponent implements OnInit {
             width: '300px'
         });
       }else{
-        this.alerts.setMessage('Firt Login or Logup', 'error');
+        this.alerts.setMessage('First Login or Logup', 'error');
         this.onActivate();
       }
     }
@@ -67,7 +67,6 @@ export class MainPageComponent implements OnInit {
     checkIfUserLoggedIn() {
       this.http.get('http://localhost:8080/login').subscribe(response => {
         this.userLoggedIn = true;
-        alert('Success');
       },
         error => {
         this.userLoggedIn = false;
