@@ -59,9 +59,9 @@ public class LoginController {
         }
 
         //Check the password
-        //password.equals(new String(DatatypeConverter.parseBase64Binary(user.getPassword())))
+
         if(BCrypt.checkpw(password, user.getPassword())){
-            session.setAttribute("user",user);
+            session.setAttribute("user", user.getId());
             response.setStatus(200);
             System.out.println("Login IS ok in the backend");
         }else{
@@ -85,6 +85,10 @@ public class LoginController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public void logoutTheUser(){
         session.invalidate();
+    }
+
+    public HttpSession getSession() {
+        return session;
     }
 
 }
