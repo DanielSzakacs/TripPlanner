@@ -6,4 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public interface ActorRepo extends JpaRepository<Actor, Long> {
+
+    Actor getActorByName(String name);
 }
