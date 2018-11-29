@@ -15,4 +15,6 @@ public interface WalkingTourRepo extends JpaRepository<WalkingTour, Long> {
 
     @Transactional
     List<WalkingTour>findAllByCityNameAndMoviegenre(CityName cityname, Genre genre);
+
+    WalkingTour getFirstById(String id);
 }
