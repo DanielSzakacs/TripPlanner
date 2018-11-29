@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 //@NamedQuery(name = "singUpUser", query = "insert into TripUser (name, password) values (email = :email, password = :password)")
 public class TripUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -45,6 +46,11 @@ public class TripUser {
     public String getPassword() {
         return password;
     }
+
+    public long getId() {
+        return id;
+    }
+
 
     @Override
     public String toString() {
