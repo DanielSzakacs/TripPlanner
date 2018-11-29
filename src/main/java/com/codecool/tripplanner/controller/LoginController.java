@@ -27,13 +27,16 @@ public class LoginController {
 
     private TripUserRepo tripUserRepo;
 
-    public LoginController(TripUserRepo tripUserRepo){
+    private HttpSession session;
+
+    public LoginController(TripUserRepo tripUserRepo, HttpSession session){
         this.tripUserRepo = tripUserRepo;
+        this.session = session;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public HttpStatus login(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        HttpSession session = request.getSession();
+    public HttpStatus login(HttpServletRequest request) throws IOException{
+        this.session = request.getSession();
 
         // Specifies the time, in seconds, between client requests
         // before the servlet container will invalidate this session.
@@ -63,6 +66,15 @@ public class LoginController {
             response.setStatus(402);
         }
         return null;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public boolean checkUserInTheSession(){
+        if(session.getAttribute("user") == null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
