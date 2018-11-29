@@ -3,8 +3,6 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <form #userData="ngForm" (submit)="saveDialogBookingData(userData.value)">
-    <input name="firstName" type="text" placeholder="First name" ngModel> <br>
-    <input name="lastName" type="text" placeholder="Last name" ngModel>
     <input name="visitDate" type="date" ngModel>
     <hr>
     <button type="submit" >Book</button> <button (click)="closeDialog()">Cancel</button>

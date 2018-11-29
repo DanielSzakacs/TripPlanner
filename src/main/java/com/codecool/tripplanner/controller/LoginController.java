@@ -62,8 +62,8 @@ public class LoginController {
         //password.equals(new String(DatatypeConverter.parseBase64Binary(user.getPassword())))
         if(BCrypt.checkpw(password, user.getPassword())){
             session.setAttribute("user",user);
+            //System.out.println("SSsssssssss" + session.getAttribute("username"));
             response.setStatus(200);
-            System.out.println("Login IS ok in the backend");
         }else{
             response.setStatus(402);
         }

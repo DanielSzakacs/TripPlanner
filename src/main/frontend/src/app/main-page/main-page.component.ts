@@ -46,10 +46,11 @@ export class MainPageComponent implements OnInit {
         console.log(this.result);
     }
 
-    openOfferDialog() {
+    openOfferDialog(walkingTourId) {
       if(this.userLoggedIn){
         this.dialog.open(OfferDialogComponent, {
-            width: '300px'
+            width: '300px',
+            data : walkingTourId
         });
       }else{
         this.alerts.setMessage('First Login or SignUp', 'error');
@@ -59,7 +60,8 @@ export class MainPageComponent implements OnInit {
 
     openSingInDialog() {
       this.dialog.open(SingInComponent, {
-        width: '450px'
+        width: '450px',
+        data : {}
       })
     }
 
