@@ -36,4 +36,8 @@ public class Actor {
     public void addMovieToList(Movie movie) {
         this.movieList.add(movie);
     }
+
+    public String getName() {
+        return name;
+    }
 }

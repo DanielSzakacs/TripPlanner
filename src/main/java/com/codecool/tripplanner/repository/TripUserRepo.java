@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public interface TripUserRepo extends JpaRepository<TripUser, Long> {
 
+
+    TripUser findByUsername(String username);
+
     TripUser findTripUserByUsername(String email);
 
 }
