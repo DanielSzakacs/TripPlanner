@@ -35,7 +35,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public HttpStatus login(HttpServletRequest request) throws IOException{
+    public HttpStatus login(HttpServletRequest request, HttpServletResponse response) throws IOException{
         this.session = request.getSession();
 
         // Specifies the time, in seconds, between client requests
@@ -69,12 +69,15 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public boolean checkUserInTheSession(){
+    public HttpStatus checkUserInTheSession(HttpServletResponse response){
         if(session.getAttribute("user") == null){
-            return true;
+            //return true;
+            response.setStatus(200);
         }else{
-            return false;
+            //return false;
+            response.setStatus(401);
         }
+        return null;
     }
 
 
