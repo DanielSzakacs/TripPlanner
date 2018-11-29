@@ -51,11 +51,9 @@ public class Timeslot {
         this.maxPax = maxPax;
     }
 
-    public Timeslot(WalkingTour walkingtour, String dateTime, int maxPax) {
-
+    public Timeslot(WalkingTour walkingtour, String dateTime) {
         this.walkingtour = walkingtour;
         this.dateTime = dateTime;
-        this.maxPax = maxPax;
     }
 
 
