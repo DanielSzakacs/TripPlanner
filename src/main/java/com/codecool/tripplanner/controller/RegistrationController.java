@@ -53,11 +53,13 @@ public class RegistrationController {
             System.out.println("The user added with this e-mail:   " + email);
             response.setStatus(200);
             resultMessage = HttpStatus.resolve(200);
+
         }else{
             System.out.println("The passwords doesn't matches!");
-            resultMessage = HttpStatus.resolve(401);
+            //resultMessage = HttpStatus.resolve(401);
+            response.setStatus(401);
 
-        }return resultMessage;
+        }return null;
 
     }
 

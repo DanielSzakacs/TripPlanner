@@ -50,6 +50,7 @@ public class LoginController {
         String email = loginData.get("email");
         System.out.println("email: " + email);
         String password = loginData.get("password");
+        System.out.println("password: " + password);
 
         //Get the user from DB
         TripUser user = tripUserRepo.findTripUserByUsername(email);
@@ -58,7 +59,8 @@ public class LoginController {
         }
 
         //Check the password
-        if(password.equals(new String(DatatypeConverter.parseBase64Binary(user.getPassword())))){
+        //password.equals(new String(DatatypeConverter.parseBase64Binary(user.getPassword())))
+        if(BCrypt.checkpw(password, user.getPassword())){
             session.setAttribute("user",user);
             response.setStatus(200);
             System.out.println("Login IS ok in the backend");
@@ -70,7 +72,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public HttpStatus checkUserInTheSession(HttpServletResponse response){
-        if(session.getAttribute("user") == null){
+        if(session.getAttribute("user") != null){
             //return true;
             response.setStatus(200);
         }else{

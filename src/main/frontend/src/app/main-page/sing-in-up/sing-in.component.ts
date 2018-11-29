@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {MainPageComponent} from "../main-page.component";
+import {AlertsService} from "angular-alert-module";
 
 @Component({
   selector: 'app-sing-in',
@@ -8,9 +10,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
   styleUrls: ['./sing-in.component.css']
 })
 export class SingInComponent implements OnInit {
-
   constructor(private http: HttpClient,
-              private dialogRef: MatDialogRef<SingInComponent>) { }
+              private dialogRef: MatDialogRef<SingInComponent>,
+              private alerts: AlertsService,
+              @Inject(MAT_DIALOG_DATA) public data: MainPageComponent) { }
 
   ngOnInit() {
   }
@@ -19,23 +22,25 @@ export class SingInComponent implements OnInit {
     console.log(data);
     this.http.post('http://localhost:8080/login', data).subscribe(result => {
       this.closeDialog();
-      console.log('Login is is OK ')
+      this.alerts.setMessage('Logged in', 'success');
     },
       error => {
-        if(error.status == 401){
-          alert('Something wrong');
-        }
+        alert('Something wrong');
       });
+    this.data.checkIfUserLoggedIn();
   }
 
   sendUserSingUpData(data) {
     console.log(data);
     this.http.post('http://localhost:8080/registration', data).subscribe(result => {
         this.closeDialog();
-        console.log(result);
+        //this.mainPageComponent.ngOnInit(); // TODO
+        this.alerts.setMessage('You sing up successful', 'success');
       },
       error => {
-        if (error.status == 404)
+        if(error.status == 401){
+          alert('Your password is not match');
+        }
           alert('Error. Please try later');
       });
   }
