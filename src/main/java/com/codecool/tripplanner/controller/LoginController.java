@@ -82,5 +82,10 @@ public class LoginController {
         return null;
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public void logoutTheUser(){
+        session.invalidate();
+    }
+
 
 }
