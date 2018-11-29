@@ -55,10 +55,10 @@ public class LoginController {
         }
 
         //Check the password
-
         if(password.equals(new String(DatatypeConverter.parseBase64Binary(user.getPassword())))){
             session.setAttribute("user",user);
             response.setStatus(200);
+            System.out.println("Login IS ok in the backend");
         }else{
             response.setStatus(402);
         }
