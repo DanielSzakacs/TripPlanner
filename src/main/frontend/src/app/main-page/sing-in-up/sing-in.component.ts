@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {MainPageComponent} from "../main-page.component";
 import {AlertsService} from "angular-alert-module";
 
 @Component({
@@ -9,34 +10,37 @@ import {AlertsService} from "angular-alert-module";
   styleUrls: ['./sing-in.component.css']
 })
 export class SingInComponent implements OnInit {
-
   constructor(private http: HttpClient,
               private dialogRef: MatDialogRef<SingInComponent>,
-              private alerts: AlertsService) {
-  }
+              private alerts: AlertsService,
+              @Inject(MAT_DIALOG_DATA) public data: MainPageComponent) { }
 
   ngOnInit() {
   }
 
-  sendUserSingInData(data) {
+  sendUserSingInData(data){
     console.log(data);
-    this.http.post('http://localhost:8088/sign_in', data).subscribe(result => {
-        this.closeDialog();
-      },
+    this.http.post('http://localhost:8080/login', data).subscribe(result => {
+      this.closeDialog();
+      this.alerts.setMessage('Logged in', 'success');
+    },
       error => {
-        if (error.status == 404)
-          alert('Error. Please try is later');
+        alert('Something wrong');
       });
+    this.data.checkIfUserLoggedIn();
   }
 
   sendUserSingUpData(data) {
     console.log(data);
-    this.http.post('http://localhost:8088/sing_up', data).subscribe(result => {
+    this.http.post('http://localhost:8080/registration', data).subscribe(result => {
         this.closeDialog();
-        console.log(result);
+        //this.mainPageComponent.ngOnInit(); // TODO
+        this.alerts.setMessage('You sing up successful', 'success');
       },
       error => {
-        if (error.status == 404)
+        if(error.status == 401){
+          alert('Your password is not match');
+        }
           alert('Error. Please try later');
       });
   }
@@ -45,16 +49,5 @@ export class SingInComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  userLogIn() {
-    this.http.get('http://localhost:8080/login').subscribe( respond => {
-      this.alerts.setMessage('You are successful logged in', 'success');
-    }, error => {
-      if(error.status == 401){
-        alert('Your email or password is not correct');
-      }
-    });
-  }
 
 }
-
-

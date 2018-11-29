@@ -73,4 +73,17 @@ public class TripUser {
     public void addTimeSlot(List<Timeslot> timeslotList){
         this.timeslotList = timeslotList;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return "TripUser{" +
+                "id=" + id +
+                ", timeslotList=" + timeslotList +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
